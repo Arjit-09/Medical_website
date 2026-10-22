@@ -15,7 +15,7 @@ export default function ProductsPage() {
         title="Pharmaceutical Shop & Catalogue"
         description="Explore our authentic pharmaceutical formulations with verified batch specifications. Confirm current availability and dispatch details with our pharmacy desk."
         videoSrc="/videos/hero-ambient.mp4"
-        bgImage="/images/hero-pills-light.jpg"
+        bgImage="/images/hero-facility.jpg"
       />
       <section className="catalog-section" style={{ padding: '40px 0 80px' }}>
         <div className="page-width">

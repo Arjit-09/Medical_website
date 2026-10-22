@@ -1,10 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { PRODUCTS } from '../data/products';
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [refCode, setRefCode] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,13 +23,28 @@ export default function ContactForm() {
     setFormData(prev => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    setError('');
+    try {
+      const res = await fetch('/api/send-enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setRefCode(data.refCode);
+        setSubmitted(true);
+      } else {
+        setError(data.error || 'Something went wrong. Please try again or call us directly.');
+      }
+    } catch {
+      setError('Network error. Please check your connection or call us directly at +1 (227) 213-4021.');
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 600);
+    }
   }
 
   if (submitted) {
@@ -37,21 +55,21 @@ export default function ContactForm() {
             <polyline points="20 6 9 17 4 12" />
           </svg>
         </div>
-        <h3>Enquiry Transmitted Successfully</h3>
+        <h3>Enquiry Sent Successfully</h3>
         <p>
-          Thank you, <b>{formData.name || 'Healthcare Partner'}</b>! Our New Delhi pharmacy desk has logged your <b>{formData.inquiryType}</b> requirement.
+          Thank you, <b>{formData.name || 'Healthcare Partner'}</b>! Your <b>{formData.inquiryType}</b> has been sent to our team. We will respond within 2 hours.
         </p>
         <div className="success-meta-box">
           <div>
-            <small>Direct Reference</small>
-            <b>CCP-RFQ-#{Math.floor(100000 + Math.random() * 900000)}</b>
+            <small>Reference Code</small>
+            <b>{refCode}</b>
           </div>
           <div>
             <small>Contact Follow-up</small>
             <b>{formData.phone || formData.email}</b>
           </div>
           <div>
-            <small>Estimated Response Time</small>
+            <small>Estimated Response</small>
             <b>Under 2 Hours (Business Desk)</b>
           </div>
         </div>
@@ -59,6 +77,7 @@ export default function ContactForm() {
           type="button"
           onClick={() => {
             setSubmitted(false);
+            setRefCode('');
             setFormData({
               name: '',
               email: '',
@@ -87,7 +106,7 @@ export default function ContactForm() {
         </div>
         <h3>Send a Trade Enquiry or RFQ</h3>
         <p>
-          Direct channel to our New Delhi central pharmaceutical desk. Batch COAs, pricing tier sheets, and cold-chain schedules provided.
+          Direct channel to our New Delhi pharmaceutical desk. We provide batch COAs, pricing sheets, and cold-chain schedules.
         </p>
       </div>
 
@@ -134,7 +153,7 @@ export default function ContactForm() {
         <div className="form-row form-row-2">
           <div className="form-group">
             <label htmlFor="contact-phone">
-              Phone / WhatsApp Number <span className="req">*</span>
+              Phone / WhatsApp <span className="req">*</span>
             </label>
             <div className="input-with-icon">
               <span className="input-icon">📱</span>
@@ -145,12 +164,12 @@ export default function ContactForm() {
                 required
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="+1 (227) 213-4021 / +91 ..."
+                placeholder="+91 79493 01717"
               />
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="contact-type">Enquiry Nature</label>
+            <label htmlFor="contact-type">Enquiry Type</label>
             <div className="input-with-icon">
               <span className="input-icon">📋</span>
               <select
@@ -162,7 +181,7 @@ export default function ContactForm() {
                 <option value="Bulk Wholesale RFQ">Bulk Wholesale RFQ</option>
                 <option value="Specific Medicine Availability">Specific Medicine Availability</option>
                 <option value="Cold-Chain Urgent Dispatch (2-8°C)">Cold-Chain Urgent Dispatch (2-8°C)</option>
-                <option value="Export & Regulatory Documentation (COA/GMP)">Export &amp; Regulatory Documentation (COA/GMP)</option>
+                <option value="Export & Regulatory Documentation (COA/GMP)">Export &amp; Regulatory Documentation</option>
                 <option value="Hospital Formulary Contract">Hospital Formulary Contract</option>
                 <option value="Other Medical Enquiry">Other Medical Enquiry</option>
               </select>
@@ -170,24 +189,33 @@ export default function ContactForm() {
           </div>
         </div>
 
-        {/* Medicine Name & Target Quantity */}
+        {/* Medicine Name & Quantity */}
         <div className="form-row form-row-2">
           <div className="form-group">
-            <label htmlFor="contact-medicine">Medicine Name / Active Salt (Optional)</label>
+            <label htmlFor="contact-medicine">Medicine Name (From Catalogue or Custom)</label>
             <div className="input-with-icon">
               <span className="input-icon">💊</span>
               <input
                 type="text"
                 id="contact-medicine"
                 name="medicineName"
+                list="catalogue-medicines-list"
                 value={formData.medicineName}
                 onChange={handleChange}
-                placeholder="e.g. Tramadol, Xanax, Amoxicillin"
+                placeholder="Select from catalogue or type medicine..."
               />
+              <datalist id="catalogue-medicines-list">
+                {PRODUCTS.map(p => (
+                  <option key={p.id} value={`${p.name} (${p.category})`} />
+                ))}
+              </datalist>
             </div>
+            <small style={{ fontSize: '11px', color: '#64748b', marginTop: '4px', display: 'block' }}>
+              💡 Select any of our 62+ catalogue medicines or type custom requirements
+            </small>
           </div>
           <div className="form-group">
-            <label htmlFor="contact-qty">Quantity Required / Pack Size</label>
+            <label htmlFor="contact-qty">Quantity / Pack Size</label>
             <div className="input-with-icon">
               <span className="input-icon">📦</span>
               <input
@@ -202,10 +230,10 @@ export default function ContactForm() {
           </div>
         </div>
 
-        {/* Detailed Comments */}
+        {/* Message */}
         <div className="form-group">
           <label htmlFor="contact-message">
-            Detailed Requirement or Destination Country <span className="req">*</span>
+            Requirements / Destination Country <span className="req">*</span>
           </label>
           <div className="textarea-wrap">
             <textarea
@@ -215,10 +243,19 @@ export default function ContactForm() {
               rows={4}
               value={formData.message}
               onChange={handleChange}
-              placeholder="Tell us about target delivery destination port/country, required certificates (COA/MSDS/GMP), pack configurations, or delivery urgency..."
+              placeholder="Tell us about your delivery destination, required certificates (COA/MSDS/GMP), pack configurations, or delivery urgency..."
             />
           </div>
         </div>
+
+        {error && (
+          <div style={{
+            background: '#fef2f2', border: '1px solid #fecaca', borderRadius: '8px',
+            padding: '12px 16px', color: '#dc2626', fontSize: '14px', fontWeight: 500
+          }}>
+            ⚠️ {error}
+          </div>
+        )}
 
         <button
           type="submit"
@@ -229,7 +266,7 @@ export default function ContactForm() {
           {loading ? (
             <span className="btn-spinner-wrap">
               <span className="spinner" />
-              <span>Transmitting Enquiry...</span>
+              <span>Sending Enquiry...</span>
             </span>
           ) : (
             <span>Submit Trade Enquiry &rarr;</span>
@@ -238,8 +275,8 @@ export default function ContactForm() {
 
         <div className="form-security-footer">
           <span>🔒 Strict Medical Confidentiality</span>
-          <span>⚡ Certified WHO-GMP Sourcing</span>
-          <span>📜 Official Pro-Forma Invoice Provided</span>
+          <span>⚡ WHO-GMP Certified Sourcing</span>
+          <span>📜 Pro-Forma Invoice Provided</span>
         </div>
       </form>
     </div>

@@ -9,7 +9,6 @@ const navItems = [
   { href: '/about', label: 'About Us' },
   { href: '/services', label: 'Services' },
   { href: '/products', label: 'Shop Catalogue' },
-  { href: '/contact', label: 'Contact & RFQ' }
 ];
 
 function Brand({ footer = false }) {
@@ -172,16 +171,6 @@ export default function SiteShell({ children }) {
         )}
 
         <div className="header-actions">
-          <Link
-            className="header-catalogue"
-            href="/products"
-            aria-label="Browse product catalogue"
-            id="header-catalogue-btn"
-          >
-            <span className="catalogue-icon"><CatalogueIcon /></span>
-            <span className="catalogue-count">62+</span>
-          </Link>
-
           <Link className="header-cta" href="/contact" id="header-cta">
             Get in Touch
           </Link>
@@ -216,7 +205,7 @@ export default function SiteShell({ children }) {
               <Link href="/about" id="footer-about">About Us</Link>
               <Link href="/services" id="footer-services">Services &amp; Logistics</Link>
               <Link href="/products" id="footer-products">Shop Catalogue</Link>
-              <Link href="/contact" id="footer-contact">Contact &amp; RFQ</Link>
+              <Link href="/contact" id="footer-contact">Get in Touch</Link>
             </div>
           </div>
 

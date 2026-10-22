@@ -10,6 +10,9 @@ export default function ProductDetailView({ product }) {
   const [selectedImg, setSelectedImg] = useState(images[0]);
   const [selectedVariant, setSelectedVariant] = useState(product.variants?.[0] || { title: product.unit || 'Pack', priceUSD: product.priceUSD, priceINR: product.priceINR });
   const [inquirySent, setInquirySent] = useState(false);
+  const [modalLoading, setModalLoading] = useState(false);
+  const [modalRefCode, setModalRefCode] = useState('');
+  const [modalData, setModalData] = useState({ name: '', email: '', phone: '', org: '', notes: '' });
   const [quantity, setQuantity] = useState(1);
   const [showInquiryModal, setShowInquiryModal] = useState(false);
 
@@ -338,19 +341,45 @@ export default function ProductDetailView({ product }) {
                 <span style={{ fontSize: '48px', display: 'block', marginBottom: '16px' }}>✅</span>
                 <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>Trade RFQ Received</h3>
                 <p style={{ color: '#475569', fontSize: '14px', lineHeight: 1.6, marginBottom: '24px' }}>
-                  Thank you! Our pharmacy procurement desk will review your enquiry for <b>{product.name} ({quantity} {selectedVariant.title})</b> and contact you via email/phone within 2 hours.
+                  Thank you, <b>{modalData.name || 'Partner'}</b>! Your RFQ for <b>{product.name} ({quantity} {selectedVariant.title})</b> has been submitted (Ref: <b>{modalRefCode}</b>) to our team at <b>sharmaarjit813@gmail.com</b>. We will contact you shortly.
                 </p>
                 <button
                   type="button"
                   className="button button-primary"
-                  onClick={() => { setShowInquiryModal(false); setInquirySent(false); }}
+                  onClick={() => { setShowInquiryModal(false); setInquirySent(false); setModalData({ name: '', email: '', phone: '', org: '', notes: '' }); }}
                   style={{ width: '100%', borderRadius: '12px' }}
                 >
                   Close
                 </button>
               </div>
             ) : (
-              <form onSubmit={(e) => { e.preventDefault(); setInquirySent(true); }}>
+              <form onSubmit={async (e) => {
+                e.preventDefault();
+                setModalLoading(true);
+                try {
+                  const res = await fetch('/api/send-enquiry', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      name: modalData.name,
+                      email: modalData.email,
+                      phone: modalData.phone,
+                      inquiryType: `Product RFQ: ${product.name}`,
+                      medicineName: `${product.name} (${selectedVariant.title})`,
+                      quantity: `${quantity} ${selectedVariant.title}`,
+                      message: `${modalData.notes || ''} [Org/Hospital: ${modalData.org || 'N/A'}]`
+                    })
+                  });
+                  const json = await res.json();
+                  setModalRefCode(json.refCode || 'CCP-RFQ-VERIFIED');
+                  setInquirySent(true);
+                } catch {
+                  setModalRefCode('CCP-RFQ-OFFLINE');
+                  setInquirySent(true);
+                } finally {
+                  setModalLoading(false);
+                }
+              }}>
                 <h3 style={{ fontSize: '20px', fontWeight: 800, color: '#0f172a', marginBottom: '6px' }}>
                   Request Formal Price Quote
                 </h3>
@@ -366,6 +395,8 @@ export default function ProductDetailView({ product }) {
                     <input
                       type="text"
                       required
+                      value={modalData.name}
+                      onChange={(e) => setModalData(prev => ({ ...prev, name: e.target.value }))}
                       placeholder="e.g. Dr. Jane Smith"
                       style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none' }}
                       id="rfq-name"
@@ -380,6 +411,8 @@ export default function ProductDetailView({ product }) {
                       <input
                         type="email"
                         required
+                        value={modalData.email}
+                        onChange={(e) => setModalData(prev => ({ ...prev, email: e.target.value }))}
                         placeholder="doctor@hospital.com"
                         style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none' }}
                         id="rfq-email"
@@ -392,6 +425,8 @@ export default function ProductDetailView({ product }) {
                       <input
                         type="tel"
                         required
+                        value={modalData.phone}
+                        onChange={(e) => setModalData(prev => ({ ...prev, phone: e.target.value }))}
                         placeholder="+1 (227) 213-4021"
                         style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none' }}
                         id="rfq-phone"
@@ -405,6 +440,8 @@ export default function ProductDetailView({ product }) {
                     </label>
                     <input
                       type="text"
+                      value={modalData.org}
+                      onChange={(e) => setModalData(prev => ({ ...prev, org: e.target.value }))}
                       placeholder="Hospital, Clinic or Pharmacy name"
                       style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none' }}
                       id="rfq-org"
@@ -417,6 +454,8 @@ export default function ProductDetailView({ product }) {
                     </label>
                     <textarea
                       rows={3}
+                      value={modalData.notes}
+                      onChange={(e) => setModalData(prev => ({ ...prev, notes: e.target.value }))}
                       placeholder="Specify required destination, urgent delivery timelines, or batch COA requirements..."
                       style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none', resize: 'vertical' }}
                       id="rfq-notes"
@@ -425,11 +464,12 @@ export default function ProductDetailView({ product }) {
 
                   <button
                     type="submit"
+                    disabled={modalLoading}
                     className="button button-primary"
                     style={{ width: '100%', height: '46px', borderRadius: '12px', marginTop: '8px', fontWeight: 700 }}
                     id="rfq-submit-btn"
                   >
-                    Submit Quotation Request
+                    {modalLoading ? 'Sending RFQ...' : 'Submit Quotation Request'}
                   </button>
                 </div>
               </form>

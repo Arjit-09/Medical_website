@@ -1,7 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-
 export default function PageBanner({
   eyebrow,
   title,
@@ -12,17 +10,21 @@ export default function PageBanner({
   children
 }) {
   return (
-    <section className={`page-hero ${className}`} style={{ position: 'relative', overflow: 'hidden', padding: '70px 20px 80px' }}>
-      {/* Background Visual (Video or Image) - High Visibility */}
-      {videoSrc ? (
+    <section className={`page-hero ${className}`} style={{
+      position: 'relative',
+      overflow: 'hidden',
+      padding: '64px 24px 72px',
+      background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%)',
+      color: '#ffffff'
+    }}>
+      {/* Real Background Video with Professional High-Contrast Contrast Overlay */}
+      {videoSrc && (
         <div style={{
           position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
+          inset: 0,
           zIndex: 0,
-          overflow: 'hidden'
+          overflow: 'hidden',
+          pointerEvents: 'none'
         }}>
           <video
             autoPlay
@@ -34,86 +36,74 @@ export default function PageBanner({
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              opacity: 0.88,
-              filter: 'saturate(1.25) contrast(1.1)',
-              transform: 'scale(1.02)'
+              opacity: 0.45,
+              filter: 'saturate(1.2)'
             }}
           >
             <source src={videoSrc} type="video/mp4" />
           </video>
-          {/* Gentle edge blend so video stays vividly visible while navbar & footer connect seamlessly */}
+          {/* Executive Dark Overlay for 100% Text Legibility */}
           <div style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(248,250,252,0.08) 25%, rgba(248,250,252,0.08) 75%, rgba(255,255,255,0.65) 100%)'
-          }} />
-          <div className="banner-grid-overlay" />
-        </div>
-      ) : bgImage ? (
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 0,
-          overflow: 'hidden'
-        }}>
-          <Image
-            src={bgImage}
-            alt=""
-            fill
-            style={{
-              objectFit: 'cover',
-              opacity: 0.85,
-              filter: 'saturate(1.2) contrast(1.08)'
-            }}
-            priority
-          />
-          <div style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(248,250,252,0.08) 25%, rgba(248,250,252,0.08) 75%, rgba(255,255,255,0.65) 100%)'
-          }} />
-          <div className="banner-grid-overlay" />
-        </div>
-      ) : (
-        <div className="page-hero-bg" aria-hidden="true">
-          <div className="hero-glow-orb" style={{
-            position: 'absolute', top: '-10%', right: '5%',
-            width: '500px', height: '500px',
-            background: 'radial-gradient(circle, rgba(80,70,229,0.15) 0%, transparent 70%)',
-            filter: 'blur(40px)', pointerEvents: 'none'
-          }} />
-          <div className="hero-glow-orb" style={{
-            position: 'absolute', bottom: '-20%', left: '10%',
-            width: '400px', height: '400px',
-            background: 'radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)',
-            filter: 'blur(50px)', pointerEvents: 'none'
+            background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 23, 42, 0.55) 50%, rgba(15, 23, 42, 0.85) 100%)'
           }} />
         </div>
       )}
 
-      {/* Floating Animated Orbs */}
-      <div className="section-orb section-orb-1" style={{ width: '380px', height: '380px', opacity: 0.7 }} />
-      <div className="section-orb section-orb-2" style={{ width: '340px', height: '340px', opacity: 0.6 }} />
-
-      {/* Hero Content inside Luxury Glass Card */}
-      <div className="banner-glass-card">
+      {/* Clean Banner Content Directly Over Video — No Bulky Glass Boxes */}
+      <div className="page-width" style={{
+        position: 'relative',
+        zIndex: 1,
+        maxWidth: '920px',
+        margin: '0 auto',
+        textAlign: 'center'
+      }}>
         {eyebrow && (
-          <div className="eyebrow banner-eyebrow">
-            <span className="eyebrow-mark">✦</span>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '6px 16px',
+            borderRadius: '9999px',
+            background: 'rgba(99, 102, 241, 0.2)',
+            border: '1px solid rgba(165, 180, 252, 0.3)',
+            color: '#c7d2fe',
+            fontSize: '13px',
+            fontWeight: 600,
+            letterSpacing: '0.04em',
+            marginBottom: '18px'
+          }}>
+            <span style={{ color: '#818cf8' }}>✦</span>
             <span>{eyebrow}</span>
           </div>
         )}
-        <h1 className="banner-title">
+
+        <h1 style={{
+          fontSize: 'clamp(30px, 4.5vw, 48px)',
+          fontWeight: 800,
+          color: '#ffffff',
+          lineHeight: 1.18,
+          letterSpacing: '-0.02em',
+          margin: '0 0 16px',
+          textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+        }}>
           {title}
         </h1>
+
         {description && (
-          <p className="banner-desc">
+          <p style={{
+            fontSize: 'clamp(15px, 2vw, 17px)',
+            color: '#cbd5e1',
+            lineHeight: 1.65,
+            maxWidth: '740px',
+            margin: '0 auto',
+            fontWeight: 400
+          }}>
             {description}
           </p>
         )}
+
         {children}
       </div>
     </section>

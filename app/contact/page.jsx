@@ -21,24 +21,9 @@ export default function ContactPage() {
         bgImage="/images/bg-contact-hq.jpg"
       />
 
-      {/* Main Contact Section with Background Ambient Video */}
-      <section className="section contact-section" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Ambient Video Background - Crisply Visible */}
-        <div className="section-video-bg" aria-hidden="true">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/images/bg-contact-hq.jpg"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.32 }}
-          >
-            <source src="/videos/contact-ambient.mp4" type="video/mp4" />
-          </video>
-          <div className="section-video-overlay" />
-        </div>
-
-        {/* Floating Ambient Glowing Orbs */}
+      {/* Main Contact Section — Clean White Background */}
+      <section className="section contact-section" style={{ background: '#ffffff' }}>
+        {/* Subtle Ambient Glowing Orbs */}
         <div className="section-orb section-orb-1" aria-hidden="true" />
         <div className="section-orb section-orb-2" aria-hidden="true" />
 
@@ -192,8 +177,8 @@ export default function ContactPage() {
             <div className="depot-details-grid">
               <div className="depot-image-wrap">
                 <Image
-                  src="/images/bg-contact-hq.jpg"
-                  alt="Care & Cure Distribution Depot and Operations Desk"
+                  src="/images/hero-facility.jpg"
+                  alt="Care &amp; Cure Distribution Depot and Operations Desk"
                   fill
                   style={{ objectFit: 'cover' }}
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -300,33 +285,10 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Quick Action Footer with In-Card Ambient Video */}
-      <section className="home-cta" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="page-width" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="cta-card" style={{ position: 'relative', overflow: 'hidden' }}>
-            {/* Ambient video nested inside card */}
-            <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster="/images/bg-contact-hq.jpg"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  opacity: 0.35,
-                  filter: 'saturate(1.3) contrast(1.1)'
-                }}
-              >
-                <source src="/videos/contact-ambient.mp4" type="video/mp4" />
-              </video>
-              <div style={{
-                position: 'absolute', inset: 0,
-                background: 'linear-gradient(135deg, rgba(80,70,229,0.85) 0%, rgba(67,56,202,0.92) 100%)'
-              }} />
-            </div>
+      {/* Quick Action Footer */}
+      <section className="home-cta">
+        <div className="page-width">
+          <div className="cta-card">
 
             <div style={{ position: 'relative', zIndex: 1 }}>
               <span className="section-kicker">Ready to proceed?</span>

@@ -219,22 +219,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Comprehensive Services Section with Background Video */}
-      <section className="section why-section" id="services" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Background ambient video - Crisply Visible */}
-        <div className="section-video-bg" aria-hidden="true">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/images/bg-services-logistics.jpg"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.32 }}
-          >
-            <source src="/videos/services-ambient.mp4" type="video/mp4" />
-          </video>
-          <div className="section-video-overlay" />
-        </div>
+      {/* Comprehensive Services Section — Clean Background */}
+      <section className="section why-section" id="services" style={{ background: '#f8fafc' }}>
 
         <div className="page-width" style={{ position: 'relative', zIndex: 1 }}>
           <div className="section-heading text-center">
@@ -300,33 +286,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Standardized Closing CTA with In-Card Ambient Video */}
-      <section className="home-cta" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="page-width" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="cta-card" style={{ position: 'relative', overflow: 'hidden' }}>
-            {/* Ambient video nested inside card */}
-            <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster="/images/bg-contact-hq.jpg"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  opacity: 0.35,
-                  filter: 'saturate(1.3) contrast(1.1)'
-                }}
-              >
-                <source src="/videos/contact-ambient.mp4" type="video/mp4" />
-              </video>
-              <div style={{
-                position: 'absolute', inset: 0,
-                background: 'linear-gradient(135deg, rgba(80,70,229,0.85) 0%, rgba(67,56,202,0.92) 100%)'
-              }} />
-            </div>
+      {/* Closing CTA */}
+      <section className="home-cta">
+        <div className="page-width">
+          <div className="cta-card">
 
             <div style={{ position: 'relative', zIndex: 1 }}>
               <span className="section-kicker">Partner With Us</span>

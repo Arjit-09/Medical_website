@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { CATALOG_CATEGORIES, PRODUCTS, categorySlug } from '../data/products';
 import { ProductCard } from '../components/product-card';
+import MedicineNotFoundForm from '../components/medicine-not-found-form';
 
 const featured = [
   PRODUCTS.find(p => p.name.includes('Tramadol')),
@@ -77,40 +78,20 @@ const tickerItems = [
 export default function HomePage() {
   return (
     <>
-      {/* ===== HERO WITH VIBRANT HIGH-VISIBILITY VIDEO BACKGROUND ===== */}
+      {/* ===== HERO ===== */}
       <section className="hero page-width" style={{ width: '100%', maxWidth: '100%', position: 'relative', overflow: 'hidden' }}>
-        {/* Ambient Video Background - Crisp & Highly Visible */}
+        {/* Hero Background Pattern */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/images/hero-pills-light.jpg"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              opacity: 0.68,
-              transform: 'scale(1.03)',
-              filter: 'saturate(1.22) contrast(1.08)'
-            }}
-          >
-            <source src="/videos/hero-ambient.mp4" type="video/mp4" />
-          </video>
-          {/* Subtle blending gradient that lets video show through clearly */}
           <div style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(180deg, rgba(255,255,255,0.65) 0%, rgba(248,250,253,0.3) 35%, rgba(248,250,253,0.2) 65%, rgba(255,255,255,0.92) 100%)'
+            background: 'radial-gradient(ellipse 80% 60% at 50% -10%, rgba(79, 70, 229, 0.08) 0%, rgba(248, 250, 252, 0) 70%), linear-gradient(180deg, #f8fafc 0%, #ffffff 100%)'
           }} />
-          <div className="banner-grid-overlay" />
+          <div className="banner-grid-overlay" style={{ opacity: 0.6 }} />
         </div>
 
-        {/* Ambient Glow Orbs */}
         <div className="hero-glow-orb glow-1" />
         <div className="hero-glow-orb glow-2" />
-        <div className="section-orb section-orb-1" />
 
         <div className="hero-content hero-glass-card" data-reveal style={{ position: 'relative', zIndex: 1 }}>
           <div className="eyebrow banner-eyebrow">
@@ -130,7 +111,6 @@ export default function HomePage() {
             service from our New Delhi team.
           </p>
 
-          {/* Search Bar */}
           <form className="hero-search-box" action="/products" method="GET">
             <span className="hero-search-icon" aria-hidden="true">🔍</span>
             <input
@@ -170,7 +150,7 @@ export default function HomePage() {
 
           <div style={{
             display: 'flex', gap: '20px', flexWrap: 'wrap', alignItems: 'center',
-            marginTop: '28px', paddingTop: '20px', borderTop: '1px solid var(--border-light)'
+            marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--border-light)'
           }}>
             <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '0.06em' }}>VERIFIED STANDARDS:</span>
             <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-secondary)', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>🛡️ WHO-GMP Verified</span>
@@ -179,16 +159,24 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* Hero Visual — Right side video panel */}
         <div className="hero-visual" data-reveal data-reveal-delay="2">
-          <div className="hero-image-wrap">
-            <Image
-              src="/images/hero-pills-light.jpg"
-              alt="Premium pharmaceutical products and capsules"
-              width={540}
-              height={540}
-              priority
-              style={{ borderRadius: '28px' }}
-            />
+          <div className="hero-video-wrap">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster="/images/hero-facility.jpg"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                borderRadius: '24px',
+              }}
+            >
+              <source src="/videos/hero-ambient.mp4" type="video/mp4" />
+            </video>
             <div className="hero-badge hero-badge-1">
               <span className="badge-icon">💊</span>
               <div className="badge-text">
@@ -278,35 +266,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== SERVICES SECTION with Clearly Visible Background Image ===== */}
+      {/* ===== SERVICES SECTION ===== */}
       <section
         className="service-section"
         id="services"
-        style={{ position: 'relative', overflow: 'hidden' }}
+        style={{ background: '#f8fafc' }}
       >
-        {/* Prominently Visible image background */}
-        <div style={{
-          position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none'
-        }}>
-          <Image
-            src="/images/pharma-lab.jpg"
-            alt="Pharmaceutical laboratory cleanroom"
-            fill
-            style={{
-              objectFit: 'cover',
-              opacity: 0.28,
-              filter: 'saturate(1.2) contrast(1.05)',
-              transform: 'scale(1.02)'
-            }}
-          />
-          <div style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(248,250,252,0.68) 50%, rgba(255,255,255,0.92) 100%)'
-          }} />
-        </div>
-        {/* Animated orbs */}
-        <div className="section-orb section-orb-1" />
-        <div className="section-orb section-orb-2" />
 
         <div className="page-width" style={{ position: 'relative', zIndex: 1 }}>
           <div className="section-heading" data-reveal>
@@ -315,7 +280,7 @@ export default function HomePage() {
               <h2>All The Service <em>You Will Get</em></h2>
             </div>
             <p className="section-intro">
-              It&apos;s important to address your supply conditions with responsive listening, transparent confirmations and dedicated support.
+              Responsive listening, transparent confirmations and dedicated support for every order.
             </p>
           </div>
 
@@ -333,7 +298,7 @@ export default function HomePage() {
                   <h3>{card.title}</h3>
                   <p>{card.description}</p>
                 </div>
-                <Link href="/about#services" className="text-link" style={{ marginTop: '20px' }}>
+                <Link href="/about#services" className="text-link" style={{ marginTop: '16px' }}>
                   Learn More <i>↗</i>
                 </Link>
               </article>
@@ -342,7 +307,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== FEATURED PRODUCTS with subtle background ===== */}
+      {/* ===== FEATURED PRODUCTS ===== */}
       <section
         className="featured-section"
         id="products"
@@ -381,36 +346,64 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== WHY WE ARE BETTER / ABOUT STRIP WITH VISIBLE VIDEO ===== */}
-      <section className="about-strip" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Background video for about strip - Prominently Visible */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/images/pharma-lab.jpg"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              opacity: 0.36,
-              filter: 'saturate(1.25) contrast(1.08)'
-            }}
-          >
-            <source src="/videos/about-ambient.mp4" type="video/mp4" />
-          </video>
-          <div style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(180deg, rgba(248,250,252,0.72) 0%, rgba(241,245,249,0.82) 100%)'
-          }} />
+      {/* ===== MEDICINE NOT FOUND SECTION ===== */}
+      <section className="mnf-section" id="medicine-not-found" style={{ background: 'linear-gradient(135deg, #eff6ff 0%, #eef2ff 100%)' }}>
+
+        <div className="page-width" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="mnf-layout">
+            {/* Left Info */}
+            <div className="mnf-info" data-reveal>
+              <span className="section-kicker">Can&apos;t Find Your Medicine?</span>
+              <h2>Medicine <em>Not Listed?</em><br />We&apos;ll Source It For You.</h2>
+              <p>
+                Our New Delhi sourcing network has access to <strong>5,000+ active pharmaceutical formulations</strong> — far beyond what is listed in our catalogue.
+              </p>
+              <p>
+                Fill in the form with the medicine details and our team will check availability within our certified supplier network and get back to you within 24 hours.
+              </p>
+              <div className="mnf-highlights">
+                <div className="mnf-highlight-item">
+                  <span className="mnf-highlight-icon">🔍</span>
+                  <div>
+                    <strong>Wide Sourcing Network</strong>
+                    <span>5,000+ formulations across certified Indian manufacturers</span>
+                  </div>
+                </div>
+                <div className="mnf-highlight-item">
+                  <span className="mnf-highlight-icon">⚡</span>
+                  <div>
+                    <strong>24-Hour Response</strong>
+                    <span>Our team verifies availability and responds promptly</span>
+                  </div>
+                </div>
+                <div className="mnf-highlight-item">
+                  <span className="mnf-highlight-icon">📜</span>
+                  <div>
+                    <strong>Full Documentation</strong>
+                    <span>COA, GMP certificates and regulatory paperwork provided</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Form */}
+            <div className="mnf-form-wrap" data-reveal data-reveal-delay="2">
+              <div className="mnf-form-header">
+                <div className="form-badge">
+                  <span className="live-dot" style={{ background: '#f59e0b' }} />
+                  <span>Medicine Sourcing Request</span>
+                </div>
+                <h3>Request a Medicine Not in Catalogue</h3>
+                <p>Fill in what you know — even partial details help us locate the right formulation.</p>
+              </div>
+              <MedicineNotFoundForm />
+            </div>
+          </div>
         </div>
-        <div className="section-orb" style={{
-          width: '400px', height: '400px',
-          background: 'radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 70%)',
-          bottom: '-10%', right: '5%', filter: 'blur(60px)', animationDelay: '-4s'
-        }} />
+      </section>
+
+      {/* ===== WHY US / ABOUT STRIP ===== */}
+      <section className="about-strip" style={{ background: 'linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)' }}>
 
         <div className="about-strip-inner" style={{ position: 'relative', zIndex: 1 }}>
           <div className="about-strip-image" data-reveal>
@@ -458,27 +451,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== TESTIMONIALS WITH VISIBLE FACILITY IMAGE ===== */}
-      <section className="trust-section" style={{ position: 'relative' }}>
-        {/* Background image treatment - Clear & Visible */}
-        <div style={{
-          position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden'
-        }}>
-          <Image
-            src="/images/bg-about-facility.jpg"
-            alt="Pharmaceutical facility"
-            fill
-            style={{
-              objectFit: 'cover',
-              opacity: 0.24,
-              filter: 'saturate(1.2)'
-            }}
-          />
-          <div style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(248,250,252,0.72) 50%, rgba(255,255,255,0.92) 100%)'
-          }} />
-        </div>
+      {/* ===== TESTIMONIALS ===== */}
+      <section className="trust-section" style={{ background: '#ffffff' }}>
 
         <div className="page-width" style={{ position: 'relative', zIndex: 1 }}>
           <div className="section-heading" data-reveal>
@@ -516,33 +490,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== CLOSING CTA WITH IN-CARD AMBIENT VIDEO ===== */}
-      <section className="home-cta" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div data-reveal style={{ position: 'relative', zIndex: 1 }}>
-          <div className="cta-card" style={{ position: 'relative', overflow: 'hidden' }}>
-            {/* Background ambient video running directly inside the card */}
-            <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster="/images/bg-contact-hq.jpg"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  opacity: 0.35,
-                  filter: 'saturate(1.3) contrast(1.1)'
-                }}
-              >
-                <source src="/videos/contact-ambient.mp4" type="video/mp4" />
-              </video>
-              <div style={{
-                position: 'absolute', inset: 0,
-                background: 'linear-gradient(135deg, rgba(80,70,229,0.85) 0%, rgba(67,56,202,0.92) 100%)'
-              }} />
-            </div>
+      {/* ===== CLOSING CTA ===== */}
+      <section className="home-cta">
+        <div data-reveal>
+          <div className="cta-card">
 
             <div style={{ position: 'relative', zIndex: 1 }}>
               <span className="section-kicker">Fast &amp; Reliable Procurement</span>
