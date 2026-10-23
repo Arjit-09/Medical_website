@@ -4,18 +4,18 @@ import PageBanner from '../../components/page-banner';
 
 export const metadata = {
   title: 'About Us | Care & Cure Pharmaceuticals',
-  description: 'Learn about Care & Cure Pharmaceuticals — certified pharmaceutical distributor, wholesaler, and global healthcare sourcing partner based in New Delhi.'
+  description: 'Learn about Care & Cure Pharmaceuticals — certified pharmaceutical distributor, wholesaler, and global healthcare sourcing partner based in Pompano Beach, FL.'
 };
 
 const facts = [
   { label: 'Core Business', value: 'Authorized Trader · Wholesaler · Exporter' },
   { label: 'Therapeutic Range', value: 'Antibiotics, Pain Relief, ED, Wellness & Smart Formulations' },
   { label: 'Registered Entity', value: 'Care And Cure Pharmaceuticals' },
-  { label: 'Headquarters', value: 'Lalita Park, Lakshmi Nagar, New Delhi, India' },
+  { label: 'Headquarters', value: '5200 NW 4th Ave, Pompano Beach, FL 33064' },
   { label: 'Active Product Listings', value: '62+ Verified Formulations' },
   { label: 'Quality Standards', value: 'WHO-GMP Compliant Sourcing & COA Verification' },
-  { label: 'Logistics Capability', value: 'Cold-Chain (2°C - 8°C) & Worldwide Tracked Dispatch' },
-  { label: 'Support Window', value: 'Mon - Sat: 8:00 AM - 9:00 PM IST' }
+  { label: 'Logistics Capability', value: 'Cold-Chain (2°C - 8°C) & Tracked US & Global Dispatch' },
+  { label: 'Support Window', value: 'Mon - Sat: 8:00 AM - 8:00 PM EST' }
 ];
 
 const pillars = [
@@ -85,8 +85,8 @@ export default function AboutPage() {
     <>
       <PageBanner
         eyebrow="Care & Cure Pharmaceuticals Profile"
-        title="Dedicated to Global Healthcare Sourcing"
-        description="Care & Cure Pharmaceuticals bridges healthcare providers, clinical networks, and international buyers with certified, high-grade pharmaceutical formulations from New Delhi."
+        title="Dedicated to Healthcare Sourcing & Supply"
+        description="Care & Cure Pharmaceuticals bridges healthcare providers, clinical networks, and patients with certified, high-grade pharmaceutical formulations from our Florida supply hub."
         videoSrc="/videos/about-ambient.mp4"
         bgImage="/images/bg-about-facility.jpg"
       />
@@ -103,7 +103,7 @@ export default function AboutPage() {
               <h2>Built on clinical integrity, meticulous quality and uncompromising trust.</h2>
               <div className="about-text-body">
                 <p>
-                  Established as an authorized pharmaceutical trading and wholesale distributor in New Delhi, <b>Care And Cure Pharmaceuticals</b> operates with a singular focus: delivering verified, therapeutic-grade medications to institutions, clinics, and medical partners worldwide.
+                  Established as an authorized pharmaceutical trading and wholesale distributor based at 5200 NW 4th Ave, Pompano Beach, Florida, <b>Care And Cure Pharmaceuticals</b> operates with a singular focus: delivering verified, therapeutic-grade medications to institutions, clinics, and medical partners across the United States and worldwide.
                 </p>
                 <p>
                   Our comprehensive product catalogue spans critical therapeutic categories including advanced antibiotics, pain management regimens, erectile dysfunction therapeutics, wellness compounds, and cognitive formulations. We ensure all products are acquired directly from licensed manufacturers operating under strict Good Manufacturing Practice (GMP) standards.
@@ -137,7 +137,7 @@ export default function AboutPage() {
                 <div className="about-image-caption">
                   <span className="caption-badge">Operations &amp; Compliance Hub</span>
                   <h4>Care &amp; Cure Logistics &amp; Quality Control</h4>
-                  <p>Temperature-controlled staging area and batch verification desk in New Delhi.</p>
+                  <p>Temperature-controlled staging area and batch verification desk in Pompano Beach, FL.</p>
                 </div>
               </div>
             </div>
@@ -183,7 +183,7 @@ export default function AboutPage() {
               <h2>Company Credentials &amp; Key Facts</h2>
             </div>
             <span className="profile-badge">
-              ● Verified Indian Pharmaceutical Enterprise
+              ● Verified Licensed Pharmaceutical Supplier
             </span>
           </div>
 
@@ -200,20 +200,20 @@ export default function AboutPage() {
           {/* Statutory Registration Badges */}
           <div className="statutory-row">
             <div>
-              <small>GST Registration</small>
-              <b>07AVSPJ6191L2ZR</b>
+              <small>Distribution Hub</small>
+              <b>Pompano Beach, FL Logistics Center</b>
             </div>
             <div>
-              <small>Import Export Code (IEC)</small>
-              <b>AVSPJ6191L</b>
+              <small>Compliance Standard</small>
+              <b>WHO-GMP &amp; FDA Certified Sourcing</b>
             </div>
             <div>
-              <small>UDYAM MSME Registration</small>
-              <b>UDYAM-DL-05-0020257</b>
+              <small>Cold-Chain Staging</small>
+              <b>2°C – 8°C Monitored Depot</b>
             </div>
             <div>
               <small>Jurisdiction</small>
-              <b>Delhi, India</b>
+              <b>Florida, United States</b>
             </div>
           </div>
         </div>

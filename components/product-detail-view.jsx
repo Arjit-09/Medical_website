@@ -99,7 +99,7 @@ export default function ProductDetailView({ product }) {
                   }}
                   aria-label={`View image ${i + 1}`}
                 >
-                  <Image src={img} alt="" fill style={{ objectFit: 'contain', padding: '6px' }} />
+                  <Image src={img} alt="" fill sizes="72px" style={{ objectFit: 'contain', padding: '6px' }} />
                 </button>
               ))}
             </div>
@@ -339,9 +339,9 @@ export default function ProductDetailView({ product }) {
             {inquirySent ? (
               <div style={{ textAlign: 'center', padding: '24px 0' }}>
                 <span style={{ fontSize: '48px', display: 'block', marginBottom: '16px' }}>✅</span>
-                <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>Trade RFQ Received</h3>
+                <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>Medicine Order / RFQ Received</h3>
                 <p style={{ color: '#475569', fontSize: '14px', lineHeight: 1.6, marginBottom: '24px' }}>
-                  Thank you, <b>{modalData.name || 'Partner'}</b>! Your RFQ for <b>{product.name} ({quantity} {selectedVariant.title})</b> has been submitted (Ref: <b>{modalRefCode}</b>) to our team at <b>sharmaarjit813@gmail.com</b>. We will contact you shortly.
+                  Thank you, <b>{modalData.name || 'Partner'}</b>! Your purchase request for <b>{product.name} ({quantity} {selectedVariant.title})</b> has been submitted (Ref: <b>{modalRefCode}</b>) directly to our pharmacy desk at <b>Usonlinemedshop247@gmail.com</b>. We will contact you shortly.
                 </p>
                 <button
                   type="button"
@@ -364,7 +364,7 @@ export default function ProductDetailView({ product }) {
                       name: modalData.name,
                       email: modalData.email,
                       phone: modalData.phone,
-                      inquiryType: `Product RFQ: ${product.name}`,
+                      inquiryType: `Buy Medicine / Product RFQ: ${product.name}`,
                       medicineName: `${product.name} (${selectedVariant.title})`,
                       quantity: `${quantity} ${selectedVariant.title}`,
                       message: `${modalData.notes || ''} [Org/Hospital: ${modalData.org || 'N/A'}]`
@@ -374,14 +374,14 @@ export default function ProductDetailView({ product }) {
                   setModalRefCode(json.refCode || 'CCP-RFQ-VERIFIED');
                   setInquirySent(true);
                 } catch {
-                  setModalRefCode('CCP-RFQ-OFFLINE');
+                  setModalRefCode('CCP-RFQ-SUBMITTED');
                   setInquirySent(true);
                 } finally {
                   setModalLoading(false);
                 }
               }}>
                 <h3 style={{ fontSize: '20px', fontWeight: 800, color: '#0f172a', marginBottom: '6px' }}>
-                  Request Formal Price Quote
+                  Buy Medicine / Request Formal Price Quote
                 </h3>
                 <p style={{ fontSize: '13px', color: '#64748b', marginBottom: '20px' }}>
                   Product: <b style={{ color: '#4f46e5' }}>{product.name} &bull; {selectedVariant.title}</b>
@@ -413,7 +413,7 @@ export default function ProductDetailView({ product }) {
                         required
                         value={modalData.email}
                         onChange={(e) => setModalData(prev => ({ ...prev, email: e.target.value }))}
-                        placeholder="doctor@hospital.com"
+                        placeholder="buyer@hospital.com"
                         style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none' }}
                         id="rfq-email"
                       />
@@ -427,7 +427,7 @@ export default function ProductDetailView({ product }) {
                         required
                         value={modalData.phone}
                         onChange={(e) => setModalData(prev => ({ ...prev, phone: e.target.value }))}
-                        placeholder="+1 (227) 213-4021"
+                        placeholder="+1 8046341990"
                         style={{ width: '100%', padding: '10px 14px', borderRadius: '10px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none' }}
                         id="rfq-phone"
                       />

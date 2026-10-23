@@ -19,12 +19,12 @@ const serviceCards = [
   {
     num: '1',
     title: 'Easy to Source With Us',
-    description: 'Share the medicine name, strength and pack details. Our team verifies immediate availability from certified manufacturers across India.'
+    description: 'Share the medicine name, strength and pack details. Our team verifies immediate availability from certified pharmaceutical manufacturers.'
   },
   {
     num: '2',
     title: 'Communicate With Specialists',
-    description: 'Speak directly with our experienced New Delhi team about your specific hospital, pharmacy, or institutional supply requirements.'
+    description: 'Speak directly with our experienced Florida team about your specific hospital, pharmacy, clinic, or individual supply requirements.'
   },
   {
     num: '3',
@@ -44,28 +44,28 @@ const serviceCards = [
   {
     num: '6',
     title: 'Cold-Chain & Safe Dispatch',
-    description: 'Temperature-monitored packaging and express freight dispatch from our central New Delhi pharmaceutical facility.'
+    description: 'Temperature-monitored packaging and express freight dispatch from our central Pompano Beach, FL distribution facility.'
   }
 ];
 
 const testimonials = [
   {
     stars: 5,
-    quote: "Care & Cure Pharmaceuticals have been a reliable partner for sourcing oncology medicines for our hospital. Fast confirmations and genuine products.",
-    name: "Dr. Priya Mehra",
-    role: "Oncologist, Apollo Hospitals Delhi"
+    quote: "Care & Cure Pharmaceuticals has been a dependable partner for sourcing oncology medicines and clinical supplies for our practice. Prompt confirmations and authentic products.",
+    name: "Dr. Sarah Mitchell",
+    role: "Clinical Director, Florida Oncology Specialists"
   },
   {
     stars: 5,
-    quote: "Excellent service and transparent pricing. We regularly procure injections and capsules through them and have never faced quality issues.",
-    name: "Rajesh Verma",
-    role: "Procurement Head, Max Healthcare"
+    quote: "Excellent communication, fast dispatch, and transparent pricing. We regularly procure therapeutics through their Pompano Beach desk without supply disruptions.",
+    name: "David Reynolds",
+    role: "Procurement Head, Metro Health Network"
   },
   {
     stars: 5,
-    quote: "Highly recommended for anti-cancer medicines. The team is knowledgeable and the response time is outstanding.",
-    name: "Sunita Agarwal",
-    role: "Senior Pharmacist, Fortis Hospital"
+    quote: "Highly recommended for verified medicines and cold-chain formulations. Their team is knowledgeable, responsive, and adheres to strict batch compliance.",
+    name: "Elena Rodriguez",
+    role: "Lead Pharmacist, Palm Care Health"
   }
 ];
 
@@ -79,7 +79,7 @@ export default function HomePage() {
   return (
     <>
       {/* ===== HERO ===== */}
-      <section className="hero page-width" style={{ width: '100%', maxWidth: '100%', position: 'relative', overflow: 'hidden' }}>
+      <section className="hero" id="home-hero">
         {/* Hero Background Pattern */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
           <div style={{
@@ -87,108 +87,104 @@ export default function HomePage() {
             inset: 0,
             background: 'radial-gradient(ellipse 80% 60% at 50% -10%, rgba(79, 70, 229, 0.08) 0%, rgba(248, 250, 252, 0) 70%), linear-gradient(180deg, #f8fafc 0%, #ffffff 100%)'
           }} />
-          <div className="banner-grid-overlay" style={{ opacity: 0.6 }} />
+          <div className="banner-grid-overlay" style={{ opacity: 0.4 }} />
         </div>
 
-        <div className="hero-glow-orb glow-1" />
-        <div className="hero-glow-orb glow-2" />
-
-        <div className="hero-content hero-glass-card" data-reveal style={{ position: 'relative', zIndex: 1 }}>
-          <div className="eyebrow banner-eyebrow">
-            <span className="eyebrow-mark">✦</span>
-            <span>Pharmaceutical Supply · New Delhi, India</span>
-          </div>
-
-          <h1>
-            Trusted Medicine
-            <em> Supply, </em>
-            <span>Today And Tomorrow.</span>
-          </h1>
-
-          <p>
-            Care &amp; Cure Pharmaceuticals connects healthcare partners with a dependable range
-            of pharmaceutical products — from oncology to antivirals — backed by responsive
-            service from our New Delhi team.
-          </p>
-
-          <form className="hero-search-box" action="/products" method="GET">
-            <span className="hero-search-icon" aria-hidden="true">🔍</span>
-            <input
-              type="text"
-              name="q"
-              placeholder="Type your pills or medicine name..."
-              className="hero-search-input"
-              aria-label="Search medicine name"
-              id="hero-search-input"
-            />
-            <button type="submit" className="hero-search-btn" id="hero-search-submit">
-              Search
-            </button>
-          </form>
-
-          <div className="hero-actions">
-            <Link className="button button-primary" href="/products" id="hero-browse-products">
-              Browse Catalogue <span>↗</span>
-            </Link>
-            <Link className="button button-glass" href="/contact" id="hero-get-in-touch">
-              Get in Touch
-            </Link>
-          </div>
-
-          <div className="hero-proof">
-            <div className="proof-avatars">
-              <span>PK</span>
-              <span>RM</span>
-              <span>SG</span>
+        <div className="page-width hero-container" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="hero-content">
+            <div className="eyebrow banner-eyebrow">
+              <span className="eyebrow-mark">✦</span>
+              <span>Licensed Pharmaceutical Supply · Pompano Beach, FL</span>
             </div>
-            <div>
-              <div className="proof-stars">★★★★★</div>
-              <strong>Happy Customer · 4.9</strong>
-              <div>500+ Healthcare partners, clinics &amp; hospitals</div>
+
+            <h1>
+              Trusted Medicine
+              <em> Supply, </em>
+              <span>Today And Tomorrow.</span>
+            </h1>
+
+            <p>
+              Care &amp; Cure Pharmaceuticals connects healthcare providers, clinics, and patients with a dependable range
+              of pharmaceutical products — from oncology to antivirals — backed by responsive
+              service from our Florida team.
+            </p>
+
+            <form className="hero-search-box" action="/products" method="GET">
+              <span className="hero-search-icon" aria-hidden="true">🔍</span>
+              <input
+                type="text"
+                name="q"
+                placeholder="Type your pills or medicine name..."
+                className="hero-search-input"
+                aria-label="Search medicine name"
+                id="hero-search-input"
+              />
+              <button type="submit" className="hero-search-btn" id="hero-search-submit">
+                Search
+              </button>
+            </form>
+
+            <div className="hero-actions">
+              <Link className="button button-primary" href="/products" id="hero-browse-products">
+                Browse Catalogue <span>↗</span>
+              </Link>
+              <Link className="button button-glass" href="/contact" id="hero-get-in-touch">
+                Get in Touch
+              </Link>
             </div>
-          </div>
 
-          <div style={{
-            display: 'flex', gap: '20px', flexWrap: 'wrap', alignItems: 'center',
-            marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--border-light)'
-          }}>
-            <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '0.06em' }}>VERIFIED STANDARDS:</span>
-            <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-secondary)', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>🛡️ WHO-GMP Verified</span>
-            <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-secondary)', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>⚡ Express Dispatch</span>
-            <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-secondary)', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>❄️ Cold Chain Supply</span>
-          </div>
-        </div>
+            <div className="hero-trust-row">
+              <div className="hero-rating-badge">
+                <div className="proof-avatars">
+                  <span>PK</span>
+                  <span>RM</span>
+                  <span>SG</span>
+                </div>
+                <div>
+                  <div className="proof-stars">★★★★★ <strong>4.9</strong></div>
+                  <small>500+ Healthcare Partners</small>
+                </div>
+              </div>
 
-        {/* Hero Visual — Right side video panel */}
-        <div className="hero-visual" data-reveal data-reveal-delay="2">
-          <div className="hero-video-wrap">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              poster="/images/hero-facility.jpg"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                borderRadius: '24px',
-              }}
-            >
-              <source src="/videos/hero-ambient.mp4" type="video/mp4" />
-            </video>
-            <div className="hero-badge hero-badge-1">
-              <span className="badge-icon">💊</span>
-              <div className="badge-text">
-                <strong>250+ Products</strong>
-                <span>In catalogue</span>
+              <div className="hero-standards-chips">
+                <span className="standards-tag">🛡️ WHO-GMP Verified</span>
+                <span className="standards-tag">⚡ Express US Dispatch</span>
+                <span className="standards-tag">❄️ Cold Chain</span>
               </div>
             </div>
-            <div className="hero-badge hero-badge-2">
-              <span className="badge-icon">🚀</span>
-              <div className="badge-text">
-                <strong>Fast Dispatch</strong>
-                <span>New Delhi Hub</span>
+          </div>
+
+          {/* Hero Visual — Right side video panel */}
+          <div className="hero-visual">
+            <div className="hero-video-wrap">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster="/images/hero-facility.jpg"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  borderRadius: '20px',
+                }}
+              >
+                <source src="/videos/hero-ambient.mp4" type="video/mp4" />
+              </video>
+              <div className="hero-badge hero-badge-1">
+                <span className="badge-icon">💊</span>
+                <div className="badge-text">
+                  <strong>250+ Products</strong>
+                  <span>In catalogue</span>
+                </div>
+              </div>
+              <div className="hero-badge hero-badge-2">
+                <span className="badge-icon">🚀</span>
+                <div className="badge-text">
+                  <strong>Fast Dispatch</strong>
+                  <span>US &amp; Global Express</span>
+                </div>
               </div>
             </div>
           </div>
@@ -197,7 +193,7 @@ export default function HomePage() {
 
       {/* ===== STATS ===== */}
       <section className="stats-section">
-        <div className="stats-grid">
+        <div className="page-width stats-grid">
           {[
             { number: '250', suffix: '+', label: 'Products in Catalogue', icon: '💊' },
             { number: '500', suffix: '+', label: 'Healthcare Partners', icon: '🤝' },
@@ -341,7 +337,7 @@ export default function HomePage() {
           </div>
 
           <p className="catalog-note">
-            Prices shown are reference listings only. Confirm current pricing, pack details and availability with our New Delhi team.
+            Prices shown are reference listings only. Confirm current pricing, pack details and availability with our Florida team.
           </p>
         </div>
       </section>
@@ -356,17 +352,17 @@ export default function HomePage() {
               <span className="section-kicker">Can&apos;t Find Your Medicine?</span>
               <h2>Medicine <em>Not Listed?</em><br />We&apos;ll Source It For You.</h2>
               <p>
-                Our New Delhi sourcing network has access to <strong>5,000+ active pharmaceutical formulations</strong> — far beyond what is listed in our catalogue.
+                Our sourcing network has access to <strong>5,000+ active pharmaceutical formulations</strong> — far beyond what is listed in our catalogue.
               </p>
               <p>
-                Fill in the form with the medicine details and our team will check availability within our certified supplier network and get back to you within 24 hours.
+                Fill in the form with the medicine details and our team will check availability within our certified supplier network and get back to you directly.
               </p>
               <div className="mnf-highlights">
                 <div className="mnf-highlight-item">
                   <span className="mnf-highlight-icon">🔍</span>
                   <div>
                     <strong>Wide Sourcing Network</strong>
-                    <span>5,000+ formulations across certified Indian manufacturers</span>
+                    <span>5,000+ formulations across certified pharmaceutical manufacturers</span>
                   </div>
                 </div>
                 <div className="mnf-highlight-item">
@@ -405,12 +401,13 @@ export default function HomePage() {
       {/* ===== WHY US / ABOUT STRIP ===== */}
       <section className="about-strip" style={{ background: 'linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)' }}>
 
-        <div className="about-strip-inner" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="page-width about-strip-inner" style={{ position: 'relative', zIndex: 1 }}>
           <div className="about-strip-image" data-reveal>
             <Image
               src="/images/pharma-lab.jpg"
               alt="Our pharmaceutical laboratory and quality process"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               style={{ objectFit: 'cover' }}
             />
             <div className="image-badge">
@@ -421,9 +418,9 @@ export default function HomePage() {
 
           <div className="about-strip-content glass-content-card" data-reveal data-reveal-delay="2">
             <span className="section-kicker">Why We Are Better</span>
-            <h2>Your trusted pharmaceutical <em>partner</em> in India.</h2>
+            <h2>Your trusted pharmaceutical <em>partner</em> in Florida.</h2>
             <p>
-              Based in New Delhi, we work with hospitals, clinics and distributors across India
+              Based in Pompano Beach, FL, we work with healthcare institutions, clinics, pharmacies and individuals
               to source and supply a comprehensive range of pharmaceutical products with transparency,
               speed and professionalism.
             </p>
@@ -431,7 +428,7 @@ export default function HomePage() {
             <div className="feature-list">
               {[
                 { icon: '🔬', title: 'Quality Verified Products', desc: 'All medicines sourced from certified, regulated WHO-GMP manufacturers.' },
-                { icon: '⚡', title: 'Fast Order Processing', desc: 'Quick confirmations and efficient dispatch from our New Delhi hub.' },
+                { icon: '⚡', title: 'Fast Order Processing', desc: 'Quick confirmations and efficient dispatch from our Florida hub.' },
                 { icon: '🤝', title: 'Dedicated Account Support', desc: 'Direct access to our knowledgeable team for every single enquiry.' },
               ].map((feat, i) => (
                 <div className="feature-item" key={i} id={`feature-item-${i}`}>
@@ -497,9 +494,9 @@ export default function HomePage() {
 
             <div style={{ position: 'relative', zIndex: 1 }}>
               <span className="section-kicker">Fast &amp; Reliable Procurement</span>
-              <h2>Make An Order &amp; Get<br /><em>Priority Pan-India Dispatch</em></h2>
+              <h2>Make An Order &amp; Get<br /><em>Priority Express Dispatch</em></h2>
               <p>
-                Speak with our New Delhi team to check products, confirm current pricing and verify immediate batch availability.
+                Speak with our Florida team to check products, confirm current pricing and verify immediate batch availability.
               </p>
               <div className="closing-actions">
                 <Link className="button button-primary" href="/contact" id="cta-get-in-touch">

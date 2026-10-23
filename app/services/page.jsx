@@ -71,7 +71,7 @@ const fullServices = [
     points: [
       'Fast 2-hour response window for price quotations and stock inquiries',
       'Active pharmaceutical ingredient (API) dosage consultations',
-      'Dedicated WhatsApp hotline (+1 227 213-4021) and direct phone line'
+      'Dedicated WhatsApp line (+1 8046341990) and direct phone line'
     ]
   }
 ];
@@ -80,7 +80,7 @@ const workflowSteps = [
   {
     step: '01',
     title: 'RFQ & Batch Verification',
-    desc: 'You specify required chemical compounds, pack sizes, and dosage strengths. Our New Delhi desk verifies immediate stock and batch COAs.'
+    desc: 'You specify required chemical compounds, pack sizes, and dosage strengths. Our Florida desk verifies immediate stock and batch COAs.'
   },
   {
     step: '02',
@@ -203,7 +203,7 @@ export default function ServicesPage() {
               <span className="coldchain-kicker">Cold-Chain Standard</span>
               <h2>Temperature Controlled Global Distribution</h2>
               <p>
-                From our New Delhi temperature-regulated depot to final delivery, we maintain an unbroken cold chain for temperature-sensitive injectables, biologics, and specialized antibiotics.
+                From our Pompano Beach, FL temperature-regulated depot to final delivery, we maintain an unbroken cold chain for temperature-sensitive injectables, biologics, and specialized antibiotics.
               </p>
               <div className="coldchain-actions">
                 <Link className="button button-primary" href="/contact">
@@ -227,11 +227,11 @@ export default function ServicesPage() {
               <span className="section-kicker">Enterprise Supply Agreements</span>
               <h2>Secure your medical supply<br /><em>with trusted batch verification.</em></h2>
               <p>
-                Contact our New Delhi distribution desk to discuss institutional formulary supply, hospital contracts, or custom export dossiers.
+                Contact our Florida distribution desk to discuss institutional formulary supply, prescription contracts, or tracked express delivery.
               </p>
               <div className="closing-actions">
                 <Link className="button button-primary" href="/contact">Enquire Today ↗</Link>
-                <a className="button button-glass" href="tel:+12272134021">Call Pharmacy Desk</a>
+                <a className="button button-glass" href="tel:+18046341990">Call Pharmacy Desk</a>
               </div>
             </div>
           </div>

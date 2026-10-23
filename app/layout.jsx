@@ -4,29 +4,29 @@ import SiteShell from '../components/site-shell';
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://careandcurepharma.com'),
   title: {
-    default: 'Care & Cure Pharmaceuticals | Trusted Medicine Supply — New Delhi',
+    default: 'Care & Cure Pharmaceuticals | Trusted Medicine Supply — Pompano Beach, FL',
     template: '%s | Care & Cure Pharmaceuticals'
   },
-  description: 'Care And Cure Pharmaceuticals is a trusted pharmaceutical wholesaler and distributor based in New Delhi. Browse 250+ medicine listings — oncology, antivirals, injections, tablets — and contact the team for current pricing and availability.',
+  description: 'Care And Cure Pharmaceuticals is a trusted pharmaceutical wholesaler and supplier based at 5200 NW 4th Ave, Pompano Beach, FL 33064. Browse authentic medicines — antibiotics, pain relief, antivirals — and connect with our team for fast delivery.',
   applicationName: 'Care & Cure Pharmaceuticals',
   keywords: [
-    'pharmaceutical distributor India', 'medicine wholesaler New Delhi',
-    'anti cancer medicines India', 'pharmaceutical injections supplier',
-    'oncology medicines supplier', 'antiviral medicines India'
+    'pharmaceutical distributor Florida', 'medicine supplier Pompano Beach',
+    'prescription medicine supplier FL', 'pharmaceutical wholesale USA',
+    'verified medications online', 'cold chain medicine supply'
   ],
   openGraph: {
     type: 'website',
-    locale: 'en_IN',
+    locale: 'en_US',
     siteName: 'Care & Cure Pharmaceuticals',
     title: 'Care & Cure Pharmaceuticals | Trusted Medicine Supply',
-    description: 'Explore 250+ medicine listings and connect with our New Delhi team for current pricing and availability.'
+    description: 'Explore 250+ medicine listings and connect with our Florida team for current pricing and fast delivery.'
   },
   robots: { index: true, follow: true }
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-IN">
+    <html lang="en-US" data-scroll-behavior="smooth">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

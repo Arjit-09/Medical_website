@@ -44,21 +44,28 @@ export default function SiteShell({ children }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const nodes = document.querySelectorAll('[data-reveal]');
-    if (!('IntersectionObserver' in window)) {
-      nodes.forEach(node => node.classList.add('is-visible'));
-      return undefined;
-    }
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    nodes.forEach(node => observer.observe(node));
-    return () => observer.disconnect();
+    let observer;
+    const timer = setTimeout(() => {
+      const nodes = document.querySelectorAll('[data-reveal]');
+      if (!('IntersectionObserver' in window)) {
+        nodes.forEach(node => node.classList.add('is-visible'));
+        return;
+      }
+      observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      nodes.forEach(node => observer.observe(node));
+    }, 50);
+
+    return () => {
+      clearTimeout(timer);
+      if (observer) observer.disconnect();
+    };
   }, [pathname]);
 
   useEffect(() => {
@@ -105,75 +112,81 @@ export default function SiteShell({ children }) {
       <header
         className={`header${scrolled ? ' header-scrolled' : ''}`}
       >
-        <Brand />
+        <div className="header-inner page-width">
+          <Brand />
 
-        <button
-          className={`menu-toggle${menuOpen ? ' menu-open' : ''}`}
-          onClick={() => setMenuOpen(v => !v)}
-          aria-expanded={menuOpen}
-          aria-controls="main-nav"
-          aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
-          id="mobile-menu-toggle"
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+          <button
+            className={`menu-toggle${menuOpen ? ' menu-open' : ''}`}
+            onClick={() => setMenuOpen(v => !v)}
+            aria-expanded={menuOpen}
+            aria-controls="main-nav"
+            aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+            id="mobile-menu-toggle"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
 
-        <nav
-          className={`nav${menuOpen ? ' nav-open' : ''}`}
-          id="main-nav"
-          aria-label="Main navigation"
-        >
-          {navItems.map((item, i) => {
-            const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href.split('#')[0]);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMenuOpen(false)}
-                aria-current={active ? 'page' : undefined}
-                className={active ? 'active' : ''}
-                id={`nav-item-${i}`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+          <nav
+            className={`nav${menuOpen ? ' nav-open' : ''}`}
+            id="main-nav"
+            aria-label="Main navigation"
+          >
+            {navItems.map((item, i) => {
+              const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href.split('#')[0]);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  aria-current={active ? 'page' : undefined}
+                  className={active ? 'active' : ''}
+                  id={`nav-item-${i}`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
 
-          {/* Mobile-only contact & info panel */}
-          <div className="nav-mobile-footer">
-            <div className="nav-mobile-phone">
-              <span className="mobile-phone-icon">📞</span>
-              <div>
-                <small>Direct Pharmacy Desk</small>
-                <a href="tel:+12272134021">+1 (227) 213-4021</a>
+            {/* Mobile-only contact & info panel */}
+            <div className="nav-mobile-footer">
+              <div className="nav-mobile-phone">
+                <span className="mobile-phone-icon">📞</span>
+                <div>
+                  <small>Direct Pharmacy Desk</small>
+                  <a href="tel:+18046341990">+1 8046341990</a>
+                </div>
               </div>
+              <Link
+                className="button button-primary nav-mobile-cta"
+                href="/contact"
+                onClick={() => setMenuOpen(false)}
+                id="nav-mobile-cta"
+              >
+                Request Trade Quotation &rarr;
+              </Link>
             </div>
-            <Link
-              className="button button-primary nav-mobile-cta"
-              href="/contact"
+          </nav>
+
+          {/* Mobile menu backdrop blur */}
+          {menuOpen && (
+            <div
+              className="mobile-nav-backdrop"
               onClick={() => setMenuOpen(false)}
-              id="nav-mobile-cta"
-            >
-              Request Trade Quotation &rarr;
+              aria-hidden="true"
+            />
+          )}
+
+          <div className="header-actions">
+            <a href="tel:+18046341990" className="header-phone-link" id="header-phone" aria-label="Call direct pharmacy desk">
+              <span className="header-phone-icon">📞</span>
+              <span className="header-phone-number">+1 8046341990</span>
+            </a>
+            <Link className="header-cta" href="/contact" id="header-cta">
+              Get in Touch
             </Link>
           </div>
-        </nav>
-
-        {/* Mobile menu backdrop blur */}
-        {menuOpen && (
-          <div
-            className="mobile-nav-backdrop"
-            onClick={() => setMenuOpen(false)}
-            aria-hidden="true"
-          />
-        )}
-
-        <div className="header-actions">
-          <Link className="header-cta" href="/contact" id="header-cta">
-            Get in Touch
-          </Link>
         </div>
       </header>
 
@@ -188,8 +201,8 @@ export default function SiteShell({ children }) {
           <div>
             <Brand footer />
             <p className="footer-description">
-              Connecting healthcare partners, clinics and hospitals with a dependable range of
-              certified pharmaceutical products from New Delhi, India. Trade enquiries welcome.
+              Connecting healthcare partners, clinics and patients with a dependable range of
+              certified pharmaceutical products. Fast, secure US shipping and nationwide support. Trade enquiries welcome.
             </p>
             <div className="footer-cert-badges">
               <span className="badge-pill">🛡️ WHO-GMP Sourced</span>
@@ -223,20 +236,19 @@ export default function SiteShell({ children }) {
           <div className="footer-col">
             <h4>Pharmacy Desk</h4>
             <div className="footer-links">
-              <span style={{ color: 'var(--text-muted)', fontSize: '14px' }}>
-                📍 Lalita Park, Lakshmi Nagar, New Delhi, India
+              <span style={{ color: 'var(--text-muted)', fontSize: '13px', lineHeight: 1.5 }}>
+                📍 5200 NW 4th Ave<br />Pompano Beach, FL 33064
               </span>
-              <a href="tel:+12272134021" id="footer-phone-us">📞 +1 (227) 213-4021 (Int’l)</a>
-              <a href="tel:+917949301717" id="footer-phone-in">📞 +91 79493 01717 (Delhi)</a>
-              <a href="https://wa.me/12272134021" target="_blank" rel="noopener noreferrer" id="footer-wa">💬 WhatsApp Support</a>
-              <a href="mailto:support@careandcurepharma.com" id="footer-email">✉️ support@careandcurepharma.com</a>
+              <a href="tel:+18046341990" id="footer-phone-us">📞 +1 8046341990</a>
+              <a href="https://wa.me/18046341990" target="_blank" rel="noopener noreferrer" id="footer-wa">💬 WhatsApp Support</a>
+              <a href="mailto:Usonlinemedshop247@gmail.com" id="footer-email">✉️ Usonlinemedshop247@gmail.com</a>
             </div>
           </div>
         </div>
 
         <div className="footer-bottom page-width">
-          <span>© {new Date().getFullYear()} Care And Cure Pharmaceuticals. All rights reserved. Registered Indian MSME Enterprise.</span>
-          <span>Trade enquiries only · Always follow a qualified healthcare professional&apos;s advice.</span>
+          <span>© {new Date().getFullYear()} Care And Cure Pharmaceuticals · 5200 NW 4th Ave, Pompano Beach, FL 33064. All rights reserved.</span>
+          <span>Trade &amp; Healthcare Inquiries · Always follow a qualified physician&apos;s guidance.</span>
         </div>
       </footer>
     </>

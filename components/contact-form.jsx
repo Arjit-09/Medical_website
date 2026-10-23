@@ -41,7 +41,7 @@ export default function ContactForm() {
         setError(data.error || 'Something went wrong. Please try again or call us directly.');
       }
     } catch {
-      setError('Network error. Please check your connection or call us directly at +1 (227) 213-4021.');
+      setError('Network error. Please check your connection or call us directly at +1 8046341990.');
     } finally {
       setLoading(false);
     }
@@ -57,7 +57,7 @@ export default function ContactForm() {
         </div>
         <h3>Enquiry Sent Successfully</h3>
         <p>
-          Thank you, <b>{formData.name || 'Healthcare Partner'}</b>! Your <b>{formData.inquiryType}</b> has been sent to our team. We will respond within 2 hours.
+          Thank you, <b>{formData.name || 'Healthcare Partner'}</b>! Your <b>{formData.inquiryType}</b> has been sent directly to our team at <b>Usonlinemedshop247@gmail.com</b>. We will respond promptly.
         </p>
         <div className="success-meta-box">
           <div>
@@ -106,7 +106,7 @@ export default function ContactForm() {
         </div>
         <h3>Send a Trade Enquiry or RFQ</h3>
         <p>
-          Direct channel to our New Delhi pharmaceutical desk. We provide batch COAs, pricing sheets, and cold-chain schedules.
+          Direct channel to our Florida pharmaceutical desk. Inquiries are sent directly to Usonlinemedshop247@gmail.com with batch COAs, pricing sheets, and shipping schedules.
         </p>
       </div>
 
@@ -164,7 +164,7 @@ export default function ContactForm() {
                 required
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="+91 79493 01717"
+                placeholder="+1 8046341990"
               />
             </div>
           </div>
