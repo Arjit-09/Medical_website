@@ -35,7 +35,7 @@ const FEATURED_TREATMENTS = [
 
 export default function HeroSection() {
   return (
-    <section className="clean-hero-section" aria-label="Welcome to Medzwell">
+    <section className="clean-hero-section" aria-label="Welcome to Medzwall">
       <div className="page-width clean-hero-inner">
         {/* Left Column: Clear, Bright Medical Introduction */}
         <div className="clean-hero-content">

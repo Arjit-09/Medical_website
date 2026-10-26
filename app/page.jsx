@@ -42,7 +42,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Why Choose Us / Trust Badges ── */}
-      <section className="why-us-section" aria-label="Why Choose Medzwell">
+      <section className="why-us-section" aria-label="Why Choose Medzwall">
         <div className="page-width">
           <div className="section-header-center">
             <p className="eyebrow">OUR COMMITMENT</p>

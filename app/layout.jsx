@@ -2,12 +2,12 @@ import "./globals.css";
 import SiteShell from "../components/site-shell";
 export const metadata = {
   title: {
-    default: "Medzwell | Products & enquiries",
-    template: "%s | Medzwell",
+    default: "Medzwall | Products & Orders",
+    template: "%s | Medzwall",
   },
   description:
-    "Browse the Medzwell product catalogue. Enquire about an order or request a product with our team.",
-  applicationName: "Medzwell",
+    "Browse the Medzwall product catalogue. Order or request a product with our team.",
+  applicationName: "Medzwall",
 };
 export default function RootLayout({ children }) {
   return (

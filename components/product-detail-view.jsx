@@ -24,7 +24,7 @@ export default function ProductDetailView({ product }) {
 
   // WhatsApp order message
   const whatsappMsg = encodeURIComponent(
-    `Hello Medzwell, I want to order:\nProduct: ${product.name}\nPack/Variant: ${
+    `Hello Medzwall, I want to order:\nProduct: ${product.name}\nPack/Variant: ${
       selectedVariant ? selectedVariant.title : "Standard"
     }\nQuantity: ${quantity}\nPlease confirm pricing and delivery details.`
   );
@@ -177,7 +177,7 @@ export default function ProductDetailView({ product }) {
                 `${product.name} (${selectedVariant ? selectedVariant.title : "Standard"})`
               )}&qty=${quantity}`}
             >
-              Enquire Online ↗
+              Order Online ↗
             </Link>
           </div>
 

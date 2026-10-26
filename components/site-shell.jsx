@@ -4,10 +4,10 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { CONTACT } from "../data/site";
 
-/* ── Medzwell Official Brand Logo (Royal Sapphire & Crisp Navy) ── */
+/* ── Medzwall Official Brand Logo (Royal Sapphire & Crisp Navy) ── */
 export function Brand({ className = "" }) {
   return (
-    <Link href="/" className={`brand ${className}`} aria-label="Medzwell home">
+    <Link href="/" className={`brand ${className}`} aria-label="Medzwall home">
       <svg
         width="34"
         height="34"
@@ -32,7 +32,7 @@ export function Brand({ className = "" }) {
         />
       </svg>
       <span className="brand-text">
-        medzwell<span className="brand-dot">.</span>
+        medzwall<span className="brand-dot">.</span>
       </span>
     </Link>
   );
@@ -374,7 +374,7 @@ export default function SiteShell({ children }) {
 
         {/* Bottom bar */}
         <div className="page-width footer-bottom">
-          <span>© {new Date().getFullYear()} Medzwell. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Medzwall. All rights reserved.</span>
           <span>Prescription products require appropriate clinical verification.</span>
         </div>
       </footer>

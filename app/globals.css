@@ -1,5 +1,5 @@
 /* ============================================================
-   MEDZWELL — ROYAL SAPPHIRE BLUE & MIDNIGHT NAVY DESIGN SYSTEM
+   MEDZWALL — ROYAL SAPPHIRE BLUE & MIDNIGHT NAVY DESIGN SYSTEM
    Production-grade, clean clinical aesthetic.
    Matches pharmaceutical packaging & delivers maximum trust.
    ============================================================ */
@@ -129,7 +129,7 @@ img { display: block; max-width: 100%; height: auto; }
   gap: 16px;
 }
 
-/* Medzwell Logo */
+/* Medzwall Logo */
 .brand {
   display: inline-flex;
   align-items: center;

@@ -55,7 +55,7 @@ test("form validation and SMTP outcomes", async () => {
       assert.equal(mail.replyTo, fields.email);
       assert.ok(
         mail.subject.includes(
-          kind === "order" ? "order enquiry" : "missing product",
+          kind === "order" ? "order" : "missing product",
         ),
       );
       assert.ok(mail.text.includes(fields.message));

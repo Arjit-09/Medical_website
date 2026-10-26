@@ -17,7 +17,7 @@ export async function generateMetadata({ params }) {
   return category
     ? {
         title: category,
-        description: `Browse ${category.toLowerCase()} listings from Medzwell.`,
+        description: `Browse ${category.toLowerCase()} listings from Medzwall.`,
       }
     : { title: "Category not found" };
 }
@@ -32,7 +32,7 @@ export default async function ProductCategoryPage({ params }) {
   return (
     <>
       <PageBanner
-        eyebrow="Medzwell products"
+        eyebrow="Medzwall products"
         title={category}
         description="Browse listings in this category. Contact the team to confirm current stock, pricing, pack details and order quantities."
       />

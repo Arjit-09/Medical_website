@@ -57,7 +57,7 @@ function EnquiryForm() {
             setError("");
           }}
         >
-          Order enquiry
+          Order
         </button>
         <button
           type="button"
@@ -78,7 +78,7 @@ function EnquiryForm() {
           <span className="success-check">✓</span>
           <h2>Request Sent Successfully</h2>
           <p>
-            Your enquiry has been dispatched directly to our pharmacy team at{" "}
+            Your order request has been dispatched directly to our pharmacy team at{" "}
             <strong>{CONTACT.email}</strong>.
           </p>
           <p className="reference-code">Reference ID: <strong>{reference}</strong></p>
@@ -101,13 +101,13 @@ function EnquiryForm() {
             style={{ marginTop: "16px" }}
             onClick={() => setState("idle")}
           >
-            ← Submit another enquiry
+            ← Submit another order
           </button>
         </div>
       ) : (
         <>
           <h2>
-            {type === "missing" ? "Request a Product" : "Enquire About an Order"}
+            {type === "missing" ? "Request a Product" : "Order"}
           </h2>
           <p className="form-description">
             {type === "missing"
@@ -211,7 +211,7 @@ function EnquiryForm() {
                 ? "Sending directly…"
                 : type === "missing"
                 ? "Send Product Request"
-                : "Send Order Enquiry"}{" "}
+                : "Send Order"}{" "}
               <span>→</span>
             </button>
 

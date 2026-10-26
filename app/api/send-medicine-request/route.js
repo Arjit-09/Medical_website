@@ -33,11 +33,11 @@ export async function POST(request) {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          Referer: "https://medzwell.com",
-          Origin: "https://medzwell.com",
+          Referer: "https://medzwall.com",
+          Origin: "https://medzwall.com",
         },
         body: JSON.stringify({
-          _subject: `Medzwell Product Request [${refCode}]`,
+          _subject: `Medzwall Product Request [${refCode}]`,
           name: body.name || "Customer",
           email: body.email || "No email",
           phone: body.phone || "Not provided",
