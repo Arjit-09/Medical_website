@@ -10,7 +10,7 @@ const FEATURED_TREATMENTS = [
     desc: "Targeted solutions for moderate to severe pain.",
     link: "/products/category/pain-relief",
     image: "/products/tramadol-1.webp",
-    color: "#e0f2fe",
+    color: "#eff6ff",
     tag: "FAST-ACTING",
   },
   {
@@ -28,7 +28,7 @@ const FEATURED_TREATMENTS = [
     desc: "Quality tested formulations for bacterial care.",
     link: "/products/category/antibiotics",
     image: "/products/amoxicillin-1.webp",
-    color: "#d1fae5",
+    color: "#e0f2fe",
     tag: "LAB CERTIFIED",
   },
 ];
@@ -87,7 +87,7 @@ export default function HeroSection() {
               href={item.link}
               className="treatment-card"
             >
-              <div className="treatment-card-img">
+              <div className="treatment-card-img" style={{ background: item.color }}>
                 <Image
                   src={item.image}
                   alt={item.title}

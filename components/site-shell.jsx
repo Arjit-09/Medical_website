@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { CONTACT } from "../data/site";
 
-/* ── Medzwell Official Brand Logo ────────────────── */
+/* ── Medzwell Official Brand Logo (Royal Sapphire & Crisp Navy) ── */
 export function Brand({ className = "" }) {
   return (
     <Link href="/" className={`brand ${className}`} aria-label="Medzwell home">
@@ -16,7 +16,7 @@ export function Brand({ className = "" }) {
         aria-hidden="true"
         className="brand-icon-svg"
       >
-        <rect width="40" height="40" rx="9" fill="#057a55" />
+        <rect width="40" height="40" rx="9" fill="#2563eb" />
         <path
           d="M10 27V13l10 10 10-10v14"
           stroke="white"
@@ -26,7 +26,7 @@ export function Brand({ className = "" }) {
         />
         <path
           d="M20 8v7m-3.5-3.5h7"
-          stroke="#a7f3d0"
+          stroke="#93c5fd"
           strokeWidth="2"
           strokeLinecap="round"
         />
@@ -148,7 +148,7 @@ export default function SiteShell({ children }) {
 
   return (
     <>
-      {/* Top Announcement Bar (Matched green `#046c4e`) */}
+      {/* Top Announcement Bar (Matched Royal Cobalt `#1e40af`) */}
       <div className="announcement-bar" role="banner">
         <span>Questions? Call Our Pharmacy Team:</span>
         <a href={`tel:${CONTACT.telephone}`}>{CONTACT.phone} →</a>
@@ -181,7 +181,7 @@ export default function SiteShell({ children }) {
             })}
           </nav>
 
-          {/* Simple and Basic Right-side Header Controls (NO Cart Icon) */}
+          {/* Clean, Simple Header Actions */}
           <div className="header-actions">
             <Link
               href="/products"
@@ -296,7 +296,7 @@ export default function SiteShell({ children }) {
         </div>
       </section>
 
-      {/* Trust Strip (Harmonious Emerald Green) */}
+      {/* Trust Strip (Deep Midnight Navy `#0b192c`) */}
       <div className="trust-strip" role="complementary" aria-label="Why choose us">
         <div className="page-width trust-strip-inner">
           <div className="trust-item">
@@ -318,7 +318,7 @@ export default function SiteShell({ children }) {
         </div>
       </div>
 
-      {/* Cohesive Footer (Matching Deep Forest Emerald `#043e2e`) */}
+      {/* Cohesive Footer (Matching Deep Midnight Navy `#0b192c`) */}
       <footer className="footer" role="contentinfo">
         <div className="page-width footer-grid">
           {/* Brand & WhatsApp */}

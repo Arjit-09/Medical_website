@@ -81,7 +81,7 @@ export default function HomePage() {
       <section className="page-width missing-strip-wrapper">
         <div className="missing-strip">
           <div>
-            <p className="eyebrow" style={{ color: "#057a55" }}>CAN’T FIND YOUR PRODUCT?</p>
+            <p className="eyebrow">CAN’T FIND YOUR PRODUCT?</p>
             <h2>Looking for a Specific Medication?</h2>
             <p>Tell us the medicine name, strength, and quantity. Our pharmacy team will check stock and source it for you.</p>
           </div>

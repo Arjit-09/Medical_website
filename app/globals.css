@@ -1,27 +1,38 @@
 /* ============================================================
-   MEDZWELL — CLEAN, PRODUCTION-GRADE PHARMACY DESIGN SYSTEM
-   Harmonious color palette: Medical Forest Green & Fresh White
-   Fully mobile responsive, accessible, and fast.
+   MEDZWELL — ROYAL SAPPHIRE BLUE & MIDNIGHT NAVY DESIGN SYSTEM
+   Production-grade, clean clinical aesthetic.
+   Matches pharmaceutical packaging & delivers maximum trust.
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   /* Brand Cohesive Color Palette */
-  --green-primary: #057a55;
-  --green-dark: #046c4e;
-  --green-darker: #043e2e;
-  --green-light: #def7ec;
-  --green-pale: #f0fdf6;
-  --green-accent: #10b981;
-  --ink: #111827;
-  --ink-secondary: #374151;
-  --muted: #6b7280;
-  --muted-light: #9ca3af;
-  --line: #e5e7eb;
-  --line-green: #d1fae5;
-  --pale: #f9fafb;
+  --primary: #2563eb;          /* Royal Sapphire Blue */
+  --primary-hover: #1d4ed8;    /* Deeper Royal Blue */
+  --primary-dark: #1e40af;     /* Dark Cobalt for top announcement bar */
+  --primary-light: #eff6ff;    /* Soft Ice Blue */
+  --primary-pale: #f0f7ff;     /* Fresh Ice Tint */
+  --accent-cyan: #0ea5e9;      /* Sky Cyan Accent */
+  --accent-cyan-light: #e0f2fe;/* Light Cyan Tint */
+  --navy-dark: #0b192c;        /* Deep Midnight Navy Footer */
+  --navy-deepest: #071324;     /* Trust Strip Midnight */
+  --ink: #0f172a;              /* Deep Slate Text */
+  --ink-secondary: #334155;    /* Secondary Slate */
+  --muted: #64748b;            /* Muted Slate */
+  --muted-light: #94a3b8;      /* Light Slate */
+  --line: #e2e8f0;             /* Clean Border */
+  --line-primary: #bfdbfe;     /* Soft Blue Border */
+  --pale: #f8fafc;             /* Clean Slate Pale */
   --white: #ffffff;
+
+  /* Backward Compatibility Aliases */
+  --green-primary: var(--primary);
+  --green-dark: var(--primary-hover);
+  --green-darker: var(--navy-dark);
+  --green-light: var(--primary-light);
+  --green-pale: var(--primary-pale);
+  --line-green: var(--line-primary);
 
   /* Typography */
   --font: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -33,10 +44,10 @@
   --radius-pill: 50px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
-  --shadow-lg: 0 10px 30px rgba(4,62,46,0.12), 0 4px 10px rgba(0,0,0,0.05);
-  --shadow-green: 0 4px 18px rgba(5,122,85,0.28);
+  --shadow-sm: 0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
+  --shadow-md: 0 4px 16px rgba(15,23,42,0.08), 0 2px 6px rgba(15,23,42,0.04);
+  --shadow-lg: 0 10px 30px rgba(11,25,44,0.12), 0 4px 10px rgba(15,23,42,0.05);
+  --shadow-primary: 0 4px 18px rgba(37,99,235,0.25);
 }
 
 * { box-sizing: border-box; }
@@ -61,7 +72,7 @@ button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
 button { cursor: pointer; }
 button:disabled { opacity: 0.5; cursor: not-allowed; }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-  outline: 3px solid var(--green-primary);
+  outline: 3px solid var(--primary);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -78,9 +89,9 @@ img { display: block; max-width: 100%; height: auto; }
   margin-inline: auto;
 }
 
-/* ─── Top Announcement Bar (Matched Green `#046c4e`) ─── */
+/* ─── Top Announcement Bar (Matched Royal Cobalt `#1e40af`) ─── */
 .announcement-bar {
-  background: var(--green-dark);
+  background: var(--primary-dark);
   color: white;
   text-align: center;
   padding: 9px 14px;
@@ -143,10 +154,13 @@ img { display: block; max-width: 100%; height: auto; }
   font-family: var(--font);
 }
 .brand-dot {
-  color: var(--green-primary);
+  color: var(--primary);
 }
 .footer-brand .brand-text {
   color: white;
+}
+.footer-brand .brand-dot {
+  color: var(--accent-cyan);
 }
 
 /* Desktop Navigation */
@@ -165,10 +179,10 @@ img { display: block; max-width: 100%; height: auto; }
   transition: color 0.15s;
 }
 .desktop-nav a:hover {
-  color: var(--green-primary);
+  color: var(--primary);
 }
 .desktop-nav a[aria-current="page"] {
-  color: var(--green-primary);
+  color: var(--primary);
   font-weight: 700;
 }
 .desktop-nav a[aria-current="page"]::after {
@@ -178,7 +192,7 @@ img { display: block; max-width: 100%; height: auto; }
   left: 16px;
   right: 16px;
   height: 2px;
-  background: var(--green-primary);
+  background: var(--primary);
   border-radius: 2px;
 }
 
@@ -202,8 +216,8 @@ img { display: block; max-width: 100%; height: auto; }
   transition: border-color 0.15s, color 0.15s;
 }
 .header-search-link:hover {
-  border-color: var(--green-primary);
-  color: var(--green-primary);
+  border-color: var(--primary);
+  color: var(--primary);
   background: white;
 }
 .header-phone-btn {
@@ -211,7 +225,7 @@ img { display: block; max-width: 100%; height: auto; }
   align-items: center;
   gap: 8px;
   padding: 9px 18px;
-  background: var(--green-primary);
+  background: var(--primary);
   color: white;
   font-size: 13.5px;
   font-weight: 700;
@@ -221,7 +235,7 @@ img { display: block; max-width: 100%; height: auto; }
   white-space: nowrap;
 }
 .header-phone-btn:hover {
-  background: var(--green-dark);
+  background: var(--primary-hover);
   color: white;
   transform: translateY(-1px);
 }
@@ -234,7 +248,7 @@ img { display: block; max-width: 100%; height: auto; }
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--green-primary);
+  background: var(--primary);
   color: white;
   border: none;
   flex-shrink: 0;
@@ -278,8 +292,8 @@ img { display: block; max-width: 100%; height: auto; }
   transition: background 0.15s;
 }
 .mobile-nav-link:hover {
-  background: var(--green-pale);
-  color: var(--green-primary);
+  background: var(--primary-pale);
+  color: var(--primary);
 }
 .mobile-nav-divider {
   height: 1px;
@@ -301,8 +315,8 @@ img { display: block; max-width: 100%; height: auto; }
 
 /* ─── Clean, Bright Medical Hero Section ────────────── */
 .clean-hero-section {
-  background: linear-gradient(135deg, #f0fdf6 0%, #ffffff 55%, #ecfdf5 100%);
-  border-bottom: 1px solid var(--line-green);
+  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 55%, #f0f9ff 100%);
+  border-bottom: 1px solid var(--line-primary);
   padding: 56px 0 64px;
 }
 .clean-hero-inner {
@@ -315,8 +329,9 @@ img { display: block; max-width: 100%; height: auto; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--green-light);
-  color: var(--green-dark);
+  background: var(--primary-light);
+  color: var(--primary-hover);
+  border: 1px solid var(--line-primary);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.2px;
@@ -328,7 +343,7 @@ img { display: block; max-width: 100%; height: auto; }
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--green-primary);
+  background: var(--primary);
 }
 .clean-hero-title {
   color: var(--ink);
@@ -336,7 +351,7 @@ img { display: block; max-width: 100%; height: auto; }
   line-height: 1.15;
 }
 .clean-hero-title-highlight {
-  color: var(--green-primary);
+  color: var(--primary);
   display: block;
 }
 .clean-hero-desc {
@@ -367,8 +382,8 @@ img { display: block; max-width: 100%; height: auto; }
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #d1fae5;
-  color: var(--green-dark);
+  background: var(--accent-cyan-light);
+  color: var(--primary-hover);
   font-weight: 700;
   font-size: 11px;
   flex-shrink: 0;
@@ -380,20 +395,24 @@ img { display: block; max-width: 100%; height: auto; }
   flex-wrap: wrap;
 }
 .hero-primary-btn {
-  background: var(--green-primary);
-  border-color: var(--green-primary);
+  background: var(--primary);
+  border-color: var(--primary);
   font-weight: 700;
   font-size: 15px;
 }
+.hero-primary-btn:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
 .hero-call-btn {
-  border-color: var(--green-primary);
-  color: var(--green-primary);
+  border-color: var(--primary);
+  color: var(--primary);
   font-weight: 700;
   font-size: 15px;
 }
 .hero-call-btn:hover {
-  background: var(--green-primary);
-  color: white;
+  background: var(--primary-light);
+  color: var(--primary-hover);
 }
 
 /* Treatment Cards (Hero Right Column) */
@@ -416,14 +435,13 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .treatment-card:hover {
   transform: translateY(-2px);
-  border-color: var(--green-primary);
+  border-color: var(--primary);
   box-shadow: var(--shadow-md);
-  background: #fcfefd;
+  background: #fbfdff;
 }
 .treatment-card-img {
   width: 80px;
   height: 80px;
-  background: var(--pale);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
@@ -435,7 +453,7 @@ img { display: block; max-width: 100%; height: auto; }
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.8px;
-  color: var(--green-primary);
+  color: var(--primary);
   text-transform: uppercase;
   margin-bottom: 2px;
   display: block;
@@ -455,13 +473,13 @@ img { display: block; max-width: 100%; height: auto; }
 .treatment-card-link {
   font-size: 12.5px;
   font-weight: 600;
-  color: var(--green-primary);
+  color: var(--primary);
 }
 
 /* ─── Category Quick Navigation Strip ───────────────── */
 .category-strip-section {
   padding: 44px 0 20px;
-  background: #fbfdfc;
+  background: #fbfdff;
   border-bottom: 1px solid var(--line);
 }
 .category-strip-header {
@@ -491,10 +509,10 @@ img { display: block; max-width: 100%; height: auto; }
   box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 .category-pill-card:hover {
-  border-color: var(--green-primary);
+  border-color: var(--primary);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(5, 122, 85, 0.1);
-  background: var(--green-pale);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.1);
+  background: var(--primary-pale);
 }
 .category-pill-icon {
   font-size: 22px;
@@ -513,14 +531,14 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .category-pill-card:hover .category-pill-arrow {
   transform: translateX(4px);
-  color: var(--green-primary);
+  color: var(--primary);
 }
 .view-all-card {
-  background: var(--green-pale);
-  border-color: var(--line-green);
+  background: var(--primary-light);
+  border-color: var(--line-primary);
 }
 .view-all-card .category-pill-name {
-  color: var(--green-dark);
+  color: var(--primary-hover);
 }
 
 /* ─── Why Choose Us / Trust Badges ──────────────────── */
@@ -561,7 +579,7 @@ img { display: block; max-width: 100%; height: auto; }
 .feature-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
-  border-color: var(--green-primary);
+  border-color: var(--primary);
   background: white;
 }
 .feature-icon {
@@ -573,8 +591,8 @@ img { display: block; max-width: 100%; height: auto; }
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  background: var(--primary-light);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 }
 .feature-card h3 {
   font-size: 15.5px;
@@ -594,8 +612,8 @@ img { display: block; max-width: 100%; height: auto; }
   padding: 24px 0 36px;
 }
 .missing-strip {
-  background: linear-gradient(135deg, #eafaf1, #def7ec);
-  border: 1.5px solid var(--line-green);
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  border: 1.5px solid var(--line-primary);
   padding: 34px 40px;
   border-radius: var(--radius-lg);
   display: flex;
@@ -604,7 +622,7 @@ img { display: block; max-width: 100%; height: auto; }
   gap: 24px;
 }
 .missing-strip h2 { font-size: 23px; color: var(--ink); margin-top: 4px; }
-.missing-strip p { color: #374151; font-size: 14.5px; margin-top: 6px; max-width: 620px; }
+.missing-strip p { color: #334155; font-size: 14.5px; margin-top: 6px; max-width: 620px; }
 
 /* ─── Single Catalogue Section ──────────────────────── */
 .catalog-section {
@@ -642,7 +660,7 @@ img { display: block; max-width: 100%; height: auto; }
   transition: border-color 0.15s, background 0.15s;
 }
 .search-field:focus-within {
-  border-color: var(--green-primary);
+  border-color: var(--primary);
   background: white;
 }
 .search-field input {
@@ -672,7 +690,7 @@ select {
   cursor: pointer;
   transition: border-color 0.15s;
 }
-select:hover { border-color: var(--green-primary); }
+select:hover { border-color: var(--primary); }
 
 .results-count { color: var(--muted); font-size: 13px; margin: 16px 0; }
 
@@ -696,7 +714,7 @@ select:hover { border-color: var(--green-primary); }
 .product-card:hover {
   box-shadow: var(--shadow-md);
   transform: translateY(-3px);
-  border-color: var(--green-primary);
+  border-color: var(--primary);
 }
 .product-image {
   display: flex;
@@ -705,7 +723,7 @@ select:hover { border-color: var(--green-primary); }
   position: relative;
   height: 220px;
   background: #ffffff;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f1f5f9;
   overflow: hidden;
 }
 .product-image img {
@@ -731,7 +749,7 @@ select:hover { border-color: var(--green-primary); }
 }
 .product-category {
   font-size: 10px;
-  color: var(--green-primary);
+  color: var(--primary);
   text-transform: uppercase;
   letter-spacing: 0.8px;
   font-weight: 700;
@@ -746,7 +764,7 @@ select:hover { border-color: var(--green-primary); }
   text-transform: uppercase;
   margin-bottom: 6px;
 }
-.product-title a:hover { color: var(--green-primary); }
+.product-title a:hover { color: var(--primary); }
 .product-price {
   font-size: 15.5px;
   font-weight: 700;
@@ -765,8 +783,8 @@ select:hover { border-color: var(--green-primary); }
   text-align: center;
   padding: 10px 16px;
   background: white;
-  color: var(--green-darker);
-  border: 1.5px solid var(--green-darker);
+  color: var(--primary-dark);
+  border: 1.5px solid var(--primary-dark);
   border-radius: var(--radius-pill);
   font-size: 13.5px;
   font-weight: 600;
@@ -775,8 +793,8 @@ select:hover { border-color: var(--green-primary); }
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 .product-enquire:hover {
-  background: var(--green-primary);
-  border-color: var(--green-primary);
+  background: var(--primary);
+  border-color: var(--primary);
   color: white;
 }
 
@@ -784,9 +802,9 @@ select:hover { border-color: var(--green-primary); }
 .newsletter-section {
   text-align: center;
   padding: 60px 20px;
-  background: var(--green-pale);
-  border-top: 1px solid var(--line-green);
-  border-bottom: 1px solid var(--line-green);
+  background: var(--primary-pale);
+  border-top: 1px solid var(--line-primary);
+  border-bottom: 1px solid var(--line-primary);
 }
 .newsletter-section h2 {
   font-size: clamp(24px, 3.5vw, 38px);
@@ -817,11 +835,11 @@ select:hover { border-color: var(--green-primary); }
   color: var(--ink);
   transition: border-color 0.15s;
 }
-.newsletter-input:focus { border-color: var(--green-primary); }
+.newsletter-input:focus { border-color: var(--primary); }
 .newsletter-submit {
-  border: 1.5px solid var(--green-primary);
+  border: 1.5px solid var(--primary);
   border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
-  background: var(--green-primary);
+  background: var(--primary);
   color: white;
   padding: 13px 24px;
   font-weight: 700;
@@ -829,11 +847,11 @@ select:hover { border-color: var(--green-primary); }
   cursor: pointer;
   transition: background 0.15s;
 }
-.newsletter-submit:hover { background: var(--green-dark); }
+.newsletter-submit:hover { background: var(--primary-hover); }
 
-/* ─── Trust Strip (Matching Forest Green `#054e3a`) ─── */
+/* ─── Trust Strip (Deep Midnight Navy `#071324`) ─────── */
 .trust-strip {
-  background: #054e3a;
+  background: var(--navy-deepest);
   padding: 18px 0;
 }
 .trust-strip-inner {
@@ -852,13 +870,13 @@ select:hover { border-color: var(--green-primary); }
   font-weight: 500;
 }
 .trust-item svg {
-  color: #6ee7b7;
+  color: var(--accent-cyan);
   flex-shrink: 0;
 }
 
-/* ─── Cohesive Footer (Matching Deep Forest Emerald `#043e2e`) ─── */
+/* ─── Cohesive Footer (Matching Deep Midnight Navy `#0b192c`) ─── */
 .footer {
-  background: var(--green-darker);
+  background: var(--navy-dark);
   color: white;
   padding-top: 54px;
 }
@@ -882,14 +900,14 @@ select:hover { border-color: var(--green-primary); }
   max-width: 280px;
 }
 .footer-whatsapp-btn {
-  background: #10b981;
-  border-color: #10b981;
+  background: #25d366;
+  border-color: #25d366;
   padding: 9px 20px;
   font-size: 13.5px;
 }
 .footer-whatsapp-btn:hover {
-  background: #059669;
-  border-color: #059669;
+  background: #1eb956;
+  border-color: #1eb956;
 }
 .footer-heading {
   font-size: 15px;
@@ -903,7 +921,7 @@ select:hover { border-color: var(--green-primary); }
   transition: color 0.15s;
 }
 .footer-grid a:not(.brand):not(.button):hover {
-  color: #6ee7b7;
+  color: var(--accent-cyan);
 }
 .footer-contact-item {
   font-size: 13.5px;
@@ -956,10 +974,22 @@ select:hover { border-color: var(--green-primary); }
   justify-content: center;
   font-size: 15.5px;
   font-weight: 700;
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.contact-call-cta-btn:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
 }
 .contact-whatsapp-cta-btn {
   width: 100%;
   justify-content: center;
+  border-color: var(--primary-dark);
+  color: var(--primary-dark);
+}
+.contact-whatsapp-cta-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary-hover);
 }
 .contact-details {
   display: grid;
@@ -968,7 +998,7 @@ select:hover { border-color: var(--green-primary); }
 }
 .contact-details small {
   display: block;
-  color: var(--green-primary);
+  color: var(--primary);
   letter-spacing: 1px;
   font-size: 10.5px;
   font-weight: 700;
@@ -978,7 +1008,7 @@ select:hover { border-color: var(--green-primary); }
 .contact-phone-link {
   font-size: 16px;
   font-weight: 700;
-  color: var(--green-dark);
+  color: var(--primary-hover);
 }
 .timing-note {
   display: block;
@@ -1016,9 +1046,9 @@ select:hover { border-color: var(--green-primary); }
   transition: all 0.15s;
 }
 .form-tabs button[aria-pressed="true"] {
-  background: var(--green-primary);
+  background: var(--primary);
   color: white;
-  box-shadow: 0 2px 8px rgba(5, 122, 85, 0.3);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
 }
 .form-card h2 { font-size: 22px; color: var(--ink); }
 .form-description { font-size: 13.5px; color: var(--muted); margin: 8px 0 22px; }
@@ -1038,7 +1068,7 @@ select:hover { border-color: var(--green-primary); }
   transition: border-color 0.15s, background 0.15s;
 }
 .form-grid input:focus, .form-grid textarea:focus {
-  border-color: var(--green-primary);
+  border-color: var(--primary);
   background: white;
   outline: none;
 }
@@ -1051,12 +1081,12 @@ select:hover { border-color: var(--green-primary); }
 .form-error { color: #dc2626; font-size: 13px; margin: 12px 0; }
 .success-state { padding: 36px 0; text-align: center; }
 .success-state p { margin: 12px 0; }
-.reference-code { font-size: 14px; color: var(--green-dark); }
+.reference-code { font-size: 14px; color: var(--primary-hover); }
 .success-actions { display: flex; gap: 12px; justify-content: center; margin-top: 18px; flex-wrap: wrap; }
 .success-check {
   display: inline-flex;
-  background: var(--green-pale);
-  color: var(--green-primary);
+  background: var(--primary-light);
+  color: var(--primary);
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -1090,7 +1120,7 @@ select:hover { border-color: var(--green-primary); }
   height: 22px;
   border-radius: 50%;
   border: none;
-  background: #10b981;
+  background: var(--primary);
   color: white;
   display: flex;
   align-items: center;
@@ -1103,10 +1133,10 @@ select:hover { border-color: var(--green-primary); }
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: var(--green-primary);
+  background: var(--primary);
   color: white;
   border: 3px solid white;
-  box-shadow: 0 6px 20px rgba(5, 122, 85, 0.4);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1123,8 +1153,8 @@ select:hover { border-color: var(--green-primary); }
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: #e8f8f0;
-  color: #057a55;
+  background: var(--accent-cyan-light);
+  color: var(--primary-hover);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1145,7 +1175,7 @@ select:hover { border-color: var(--green-primary); }
 }
 .support-text {
   font-size: 12px;
-  color: #374151;
+  color: #334155;
   margin: 6px 0 10px;
   line-height: 1.4;
 }
@@ -1154,8 +1184,8 @@ select:hover { border-color: var(--green-primary); }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: #e8f8f0;
-  color: #057a55;
+  background: var(--primary-light);
+  color: var(--primary-hover);
   font-weight: 700;
   font-size: 13.5px;
   padding: 8px 14px;
@@ -1171,9 +1201,9 @@ select:hover { border-color: var(--green-primary); }
   gap: 8px;
   min-height: 46px;
   padding: 11px 24px;
-  background: var(--green-primary);
+  background: var(--primary);
   color: white;
-  border: 2px solid var(--green-primary);
+  border: 2px solid var(--primary);
   border-radius: var(--radius-pill);
   font-size: 14px;
   font-weight: 600;
@@ -1181,23 +1211,23 @@ select:hover { border-color: var(--green-primary); }
   cursor: pointer;
 }
 .button:hover:not(:disabled) {
-  background: var(--green-dark);
-  border-color: var(--green-dark);
-  box-shadow: var(--shadow-green);
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  box-shadow: var(--shadow-primary);
   transform: translateY(-1px);
 }
 .button-outline {
   background: white;
-  color: var(--green-darker);
-  border-color: var(--green-darker);
+  color: var(--primary-dark);
+  border-color: var(--primary-dark);
 }
 .button-outline:hover:not(:disabled) {
-  background: var(--green-pale);
-  color: var(--green-primary);
+  background: var(--primary-light);
+  color: var(--primary-hover);
 }
 .text-link {
   font-size: 14px;
-  color: var(--green-primary);
+  color: var(--primary);
   font-weight: 600;
   display: inline-flex;
   align-items: center;
@@ -1217,7 +1247,7 @@ select:hover { border-color: var(--green-primary); }
   color: var(--muted);
   flex-wrap: wrap;
 }
-.breadcrumbs a:hover { color: var(--green-primary); }
+.breadcrumbs a:hover { color: var(--primary); }
 .breadcrumb-separator { color: var(--muted-light); }
 .breadcrumb-current { color: var(--ink); font-weight: 600; }
 
@@ -1253,11 +1283,11 @@ select:hover { border-color: var(--green-primary); }
   padding: 0;
   flex-shrink: 0;
 }
-.detail-thumb.active { border-color: var(--green-primary); }
+.detail-thumb.active { border-color: var(--primary); }
 .detail-category-badge {
   display: inline-block;
-  background: var(--green-light);
-  color: var(--green-dark);
+  background: var(--primary-light);
+  color: var(--primary-hover);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.8px;
@@ -1289,14 +1319,14 @@ select:hover { border-color: var(--green-primary); }
   margin-left: auto;
   font-size: 12px;
   font-weight: 600;
-  color: #057a55;
-  background: #def7ec;
+  color: #0369a1;
+  background: #e0f2fe;
   padding: 4px 10px;
   border-radius: var(--radius-pill);
 }
 .detail-desc {
   font-size: 14.5px;
-  color: #4b5563;
+  color: #334155;
   line-height: 1.6;
   margin-bottom: 22px;
 }
@@ -1322,9 +1352,9 @@ select:hover { border-color: var(--green-primary); }
   font-weight: 500;
 }
 .variant-pill.active {
-  border-color: var(--green-primary);
-  background: var(--green-pale);
-  color: var(--green-dark);
+  border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--primary-hover);
   font-weight: 700;
 }
 .detail-quantity-wrapper { margin-bottom: 24px; }
@@ -1347,16 +1377,20 @@ select:hover { border-color: var(--green-primary); }
 .qty-val { padding: 0 14px; font-size: 14px; font-weight: 700; min-width: 40px; text-align: center; }
 .detail-actions { display: flex; gap: 12px; margin-bottom: 26px; flex-wrap: wrap; }
 .detail-whatsapp-btn {
-  background: #10b981;
-  border-color: #10b981;
+  background: #25d366;
+  border-color: #25d366;
   font-weight: 700;
   flex: 1;
   min-width: 180px;
 }
+.detail-whatsapp-btn:hover {
+  background: #1eb956;
+  border-color: #1eb956;
+}
 .detail-enquire-btn { flex: 1; min-width: 160px; }
 .detail-trust-box {
-  background: #fbfdfc;
-  border: 1px solid var(--line-green);
+  background: #fbfdff;
+  border: 1px solid var(--line-primary);
   border-radius: var(--radius-md);
   padding: 18px;
   display: flex;
@@ -1368,7 +1402,7 @@ select:hover { border-color: var(--green-primary); }
   align-items: center;
   gap: 10px;
   font-size: 13px;
-  color: #374151;
+  color: #334155;
 }
 .trust-check {
   display: inline-flex;
@@ -1377,8 +1411,8 @@ select:hover { border-color: var(--green-primary); }
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #def7ec;
-  color: #057a55;
+  background: var(--accent-cyan-light);
+  color: var(--primary-hover);
   font-weight: 700;
   font-size: 10px;
   flex-shrink: 0;
@@ -1396,10 +1430,10 @@ select:hover { border-color: var(--green-primary); }
 .catalog-note { margin-top: 18px; text-align: center; }
 .empty-state {
   text-align: center;
-  background: var(--green-pale);
+  background: var(--primary-pale);
   padding: 48px 20px;
   border-radius: var(--radius-lg);
-  border: 1px dashed var(--line-green);
+  border: 1px dashed var(--line-primary);
 }
 .empty-state p { margin: 10px 0 20px; color: var(--muted); }
 
@@ -1408,7 +1442,7 @@ select:hover { border-color: var(--green-primary); }
   font-size: 11px;
   letter-spacing: 1.5px;
   font-weight: 700;
-  color: var(--green-primary);
+  color: var(--primary);
   text-transform: uppercase;
   margin-bottom: 8px;
 }
@@ -1419,7 +1453,7 @@ select:hover { border-color: var(--green-primary); }
 .skip-link {
   position: absolute; left: 12px; top: -100px; z-index: 200;
   background: white; padding: 10px 16px; border-radius: var(--radius-sm);
-  font-size: 13px; font-weight: 600; border: 2px solid var(--green-primary);
+  font-size: 13px; font-weight: 600; border: 2px solid var(--primary);
 }
 .skip-link:focus { top: 12px; }
 
