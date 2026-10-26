@@ -2,17 +2,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+
 export function ProductCard({ product }) {
   const [failed, setFailed] = useState(false);
+  const priceDisplay = product.formattedPrice || (product.priceUSD ? `$${product.priceUSD}.00` : "$120.00");
+  const productHref = `/products/${product.slug || product.id}`;
+
   return (
     <article className="product-card">
       <Link
-        href={`/products/${product.slug || product.id}`}
+        href={productHref}
         className="product-image"
         aria-label={`View ${product.name}`}
       >
         {failed ? (
-          <span>Product image unavailable</span>
+          <div className="product-image-fallback">
+            <span>📦</span>
+            <p>{product.name}</p>
+          </div>
         ) : (
           <Image
             src={product.image}
@@ -20,26 +27,29 @@ export function ProductCard({ product }) {
             fill
             sizes="(max-width: 540px) 50vw, (max-width: 900px) 33vw, 25vw"
             onError={() => setFailed(true)}
+            style={{ objectFit: "contain", padding: "16px" }}
           />
         )}
       </Link>
+
       <div className="product-body">
         <p className="product-category">{product.category}</p>
-        <h3>
-          <Link href={`/products/${product.slug || product.id}`}>
+        <h3 className="product-title">
+          <Link href={productHref}>
             {product.name}
           </Link>
         </h3>
-        <p className="product-pack">
-          {product.dosage !== "Standard"
-            ? product.dosage
-            : "Contact us for product details"}
-        </p>
+
+        <div className="product-price">
+          <span className="from">From</span> {priceDisplay}
+        </div>
+
         <Link
           className="product-enquire"
-          href={`/contact?product=${encodeURIComponent(product.name)}`}
+          href={productHref}
+          aria-label={`Choose options for ${product.name}`}
         >
-          Enquire now <span aria-hidden="true">↗</span>
+          Choose options
         </Link>
       </div>
     </article>
