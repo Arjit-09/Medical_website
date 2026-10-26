@@ -177,7 +177,7 @@ export default function ProductDetailView({ product }) {
                 `${product.name} (${selectedVariant ? selectedVariant.title : "Standard"})`
               )}&qty=${quantity}`}
             >
-              Order Online ↗
+              Request Product ↗
             </Link>
           </div>
 

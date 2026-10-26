@@ -85,7 +85,7 @@ export default function HomePage() {
             <h2>Looking for a Specific Medication?</h2>
             <p>Tell us the medicine name, strength, and quantity. Our pharmacy team will check stock and source it for you.</p>
           </div>
-          <Link className="button" href="/contact?type=missing">
+          <Link className="button" href="/contact">
             Request a Product <span>→</span>
           </Link>
         </div>

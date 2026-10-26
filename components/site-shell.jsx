@@ -347,7 +347,7 @@ export default function SiteShell({ children }) {
             <Link href="/">Home</Link>
             <Link href="/products">All Products</Link>
             <Link href="/contact">Contact Us</Link>
-            <Link href="/contact?type=missing">Request Medicine</Link>
+            <Link href="/contact">Request Medicine</Link>
           </div>
 
           {/* Contact Details */}

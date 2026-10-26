@@ -3,11 +3,8 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { CONTACT } from "../data/site";
 
-function EnquiryForm() {
+function RequestProductForm() {
   const params = useSearchParams();
-  const initialType = params.get("type") === "missing" ? "missing" : "order";
-
-  const [type, setType] = useState(initialType);
   const [state, setState] = useState("idle");
   const [error, setError] = useState("");
   const [reference, setReference] = useState("");
@@ -20,21 +17,18 @@ function EnquiryForm() {
     setError("");
 
     try {
-      const response = await fetch(
-        type === "missing" ? "/api/send-medicine-request" : "/api/send-enquiry",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        },
-      );
+      const response = await fetch("/api/send-medicine-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
       const result = await response.json();
       if (!response.ok || !result.success) {
         throw new Error(
           result.error || "Unable to send. Please call or WhatsApp us directly.",
         );
       }
-      setReference(result.refCode || "MZW-CONFIRMED");
+      setReference(result.refCode || "MZW-REQ-CONFIRMED");
       setState("success");
       form.reset();
     } catch (err) {
@@ -45,43 +39,17 @@ function EnquiryForm() {
 
   return (
     <div className="form-card">
-      {/* Exactly TWO tabs as requested */}
-      <div className="form-tabs" role="group" aria-label="Request type">
-        <button
-          type="button"
-          aria-pressed={type === "order"}
-          disabled={state === "sending"}
-          onClick={() => {
-            setType("order");
-            setState("idle");
-            setError("");
-          }}
-        >
-          Order
-        </button>
-        <button
-          type="button"
-          aria-pressed={type === "missing"}
-          disabled={state === "sending"}
-          onClick={() => {
-            setType("missing");
-            setState("idle");
-            setError("");
-          }}
-        >
-          Request product
-        </button>
-      </div>
-
       {state === "success" ? (
         <div className="success-state" role="status">
           <span className="success-check">✓</span>
-          <h2>Request Sent Successfully</h2>
+          <h2>Product Request Sent Successfully</h2>
           <p>
-            Your order request has been dispatched directly to our pharmacy team at{" "}
+            Your product request has been dispatched directly to our pharmacy team at{" "}
             <strong>{CONTACT.email}</strong>.
           </p>
-          <p className="reference-code">Reference ID: <strong>{reference}</strong></p>
+          <p className="reference-code">
+            Reference ID: <strong>{reference}</strong>
+          </p>
           <div className="success-actions">
             <a href={`tel:${CONTACT.telephone}`} className="button success-call-btn">
               📞 Call Team: {CONTACT.phone}
@@ -101,18 +69,14 @@ function EnquiryForm() {
             style={{ marginTop: "16px" }}
             onClick={() => setState("idle")}
           >
-            ← Submit another order
+            ← Submit another product request
           </button>
         </div>
       ) : (
         <>
-          <h2>
-            {type === "missing" ? "Request a Product" : "Order"}
-          </h2>
+          <h2>Request a Product</h2>
           <p className="form-description">
-            {type === "missing"
-              ? "Tell us what you're looking for. We will check availability and get back to you directly."
-              : "Share the medicine and quantity you need. No payment taken online."}
+            Tell us the medicine or healthcare product you need. Our team will verify stock and get back to you promptly.
           </p>
 
           <form onSubmit={submit}>
@@ -152,7 +116,7 @@ function EnquiryForm() {
               </label>
 
               <label className="full">
-                {type === "missing" ? "Medicine / Product Name *" : "Product Name & Strength *"}
+                Product Name & Strength *
                 <input
                   key={params.get("product") || "product"}
                   name="medicineName"
@@ -207,17 +171,13 @@ function EnquiryForm() {
               className="button submit-button"
               disabled={state === "sending"}
             >
-              {state === "sending"
-                ? "Sending directly…"
-                : type === "missing"
-                ? "Send Product Request"
-                : "Send Order"}{" "}
+              {state === "sending" ? "Sending directly…" : "Send Product Request"}{" "}
               <span>→</span>
             </button>
 
             <p className="form-note" style={{ textAlign: "center", marginTop: "10px" }}>
               Need urgent help?{" "}
-              <a href={`tel:${CONTACT.telephone}`} style={{ color: "var(--green-primary)", fontWeight: 700 }}>
+              <a href={`tel:${CONTACT.telephone}`} style={{ color: "var(--primary)", fontWeight: 700 }}>
                 📞 Call {CONTACT.phone}
               </a>
             </p>
@@ -230,5 +190,5 @@ function EnquiryForm() {
 
 export default function ContactForm() {
   const params = useSearchParams();
-  return <EnquiryForm key={params.toString()} />;
+  return <RequestProductForm key={params.toString()} />;
 }
