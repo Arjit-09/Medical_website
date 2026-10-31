@@ -2,9 +2,28 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { CONTACT } from "../data/site";
 import { ProductCard } from "./product-card";
 import { getRelatedProducts, categorySlug } from "../data/products";
+import { useCart } from "./cart-context";
+
+function StarRating({ rating = 4.9, count = 148 }) {
+  const full = Math.floor(rating);
+  const half = rating % 1 >= 0.5;
+  return (
+    <div className="star-rating" aria-label={`${rating} out of 5, ${count} verified reviews`}>
+      {[...Array(full)].map((_, i) => (
+        <span key={i} className="star filled">★</span>
+      ))}
+      {half && <span className="star half">★</span>}
+      {[...Array(5 - full - (half ? 1 : 0))].map((_, i) => (
+        <span key={`e${i}`} className="star empty">☆</span>
+      ))}
+      <span className="star-count">{rating}/5 ({count}+ Verified Reviews)</span>
+    </div>
+  );
+}
 
 export default function ProductDetailView({ product }) {
   const images = product.images && product.images.length > 0 ? product.images : [product.image];
@@ -14,40 +33,46 @@ export default function ProductDetailView({ product }) {
   );
   const [quantity, setQuantity] = useState(1);
   const [imageFailed, setImageFailed] = useState(false);
+  const { addToCart } = useCart();
+  const router = useRouter();
 
   const related = getRelatedProducts(product, 4);
 
-  // Price calculations
-  const currentPrice = selectedVariant
-    ? (selectedVariant.priceUSD ? `$${selectedVariant.priceUSD}.00` : product.formattedPrice)
-    : product.formattedPrice || `$${product.priceUSD || 120}.00`;
+  const currentPriceUSD = selectedVariant?.priceUSD ?? product.priceUSD ?? 120;
+  const perUnit = selectedVariant?.title
+    ? (() => {
+        const match = selectedVariant.title.match(/(\d+)\s*(?:Tablets|Tabs|Pills|Capsules)?$/i);
+        if (match) {
+          const qty = parseInt(match[1]);
+          if (qty > 0) return `$${(currentPriceUSD / qty).toFixed(2)} per tablet`;
+        }
+        return null;
+      })()
+    : null;
 
-  // WhatsApp order message
-  const whatsappMsg = encodeURIComponent(
-    `Hello Medzwall, I want to order:\nProduct: ${product.name}\nPack/Variant: ${
-      selectedVariant ? selectedVariant.title : "Standard"
-    }\nQuantity: ${quantity}\nPlease confirm pricing and delivery details.`
-  );
-  const whatsappUrl = `${CONTACT.whatsapp}?text=${whatsappMsg}`;
+  function handleAddToCart() {
+    addToCart(product, selectedVariant, quantity);
+  }
+
+  function handleBuyNow() {
+    addToCart(product, selectedVariant, quantity);
+    router.push("/checkout");
+  }
 
   return (
     <div className="product-detail-container">
-      {/* ── Breadcrumbs ── */}
+      {/* Breadcrumbs */}
       <div className="page-width">
         <nav className="breadcrumbs" aria-label="Breadcrumbs">
           <Link href="/">Home</Link>
           <span className="breadcrumb-separator">/</span>
-          <Link href="/products">All Products</Link>
-          <span className="breadcrumb-separator">/</span>
-          <Link href={`/products/category/${categorySlug(product.category)}`}>
-            {product.category}
-          </Link>
+          <Link href="/products">Shop</Link>
           <span className="breadcrumb-separator">/</span>
           <span className="breadcrumb-current">{product.name}</span>
         </nav>
       </div>
 
-      {/* ── Main Detail Grid ── */}
+      {/* Main Detail Grid */}
       <section className="page-width product-detail">
         {/* Left: Gallery */}
         <div className="detail-gallery">
@@ -69,7 +94,6 @@ export default function ProductDetailView({ product }) {
               />
             )}
           </div>
-
           {images.length > 1 && (
             <div className="detail-thumbs" role="tablist" aria-label="Product thumbnails">
               {images.map((img, idx) => (
@@ -77,133 +101,112 @@ export default function ProductDetailView({ product }) {
                   key={idx}
                   type="button"
                   className={`detail-thumb ${selectedImage === img ? "active" : ""}`}
-                  onClick={() => {
-                    setSelectedImage(img);
-                    setImageFailed(false);
-                  }}
+                  onClick={() => { setSelectedImage(img); setImageFailed(false); }}
                   aria-label={`View image ${idx + 1}`}
                 >
-                  <Image
-                    src={img}
-                    alt={`${product.name} thumbnail ${idx + 1}`}
-                    fill
-                    sizes="80px"
-                    style={{ objectFit: "contain", padding: "4px" }}
-                  />
+                  <Image src={img} alt={`${product.name} thumbnail ${idx + 1}`} fill sizes="80px" style={{ objectFit: "contain", padding: "4px" }} />
                 </button>
               ))}
             </div>
           )}
         </div>
 
-        {/* Right: Info & Ordering */}
+        {/* Right: Info */}
         <div className="detail-info">
-          <div className="detail-category-badge">
-            <span>{product.category}</span>
+          <div className="detail-category-badge"><span>{product.category}</span></div>
+          <h1 className="detail-title">Buy {product.name} Online</h1>
+          {product.description && <p className="detail-desc">{product.description}</p>}
+
+          <StarRating />
+
+          <div className="detail-stock-row">
+            <span className="detail-stock-badge">● In Stock · Batch Tested &amp; Ready to Ship</span>
           </div>
 
-          <h1 className="detail-title">{product.name}</h1>
-
-          <div className="detail-price-box">
-            <span className="detail-price-label">Price:</span>
-            <span className="detail-price-val">{currentPrice}</span>
-            <span className="detail-stock-badge">In Stock · Ready to Dispatch</span>
-          </div>
-
-          {product.description && (
-            <p className="detail-desc">{product.description}</p>
+          {product.activeSalt && (
+            <div className="detail-salt-box">
+              Active Salt / Generic Formulation: <strong>{product.activeSalt}</strong>
+            </div>
           )}
 
-          {/* Variants Selector */}
+          {/* Price */}
+          <div className="detail-price-section">
+            <div className="detail-price-main">
+              <span className="detail-price-usd">${currentPriceUSD.toFixed(2)} USD</span>
+              {perUnit && <span className="detail-price-per">{perUnit}</span>}
+            </div>
+            <div className="detail-shipping-badge">
+              <strong>FREE USPS Priority Shipping</strong>
+              <span>Estimated arrival in 3–5 business days</span>
+            </div>
+          </div>
+
+          {/* Pack Size Selector */}
           {product.variants && product.variants.length > 0 && (
-            <div className="detail-variants">
-              <span className="detail-option-label">Select Pack / Strength:</span>
-              <div className="variant-pills">
+            <div className="detail-pack-selector">
+              <p className="detail-option-label">— SELECT QUANTITY &amp; DISCOUNTS</p>
+              <p className="detail-pack-title">Choose Pack Size (Tablets)</p>
+              <select
+                className="detail-pack-select"
+                value={selectedVariant ? selectedVariant.title : ""}
+                onChange={(e) => {
+                  const v = product.variants.find((v) => v.title === e.target.value);
+                  if (v) setSelectedVariant(v);
+                }}
+                aria-label="Choose pack size"
+              >
                 {product.variants.map((v, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    className={`variant-pill ${selectedVariant === v ? "active" : ""}`}
-                    onClick={() => setSelectedVariant(v)}
-                  >
-                    <span className="variant-title">{v.title}</span>
-                    {v.priceUSD && (
-                      <span className="variant-price">${v.priceUSD}</span>
-                    )}
-                  </button>
+                  <option key={i} value={v.title}>
+                    {v.title}{v.priceUSD ? ` — $${v.priceUSD.toFixed(2)} each` : ""}
+                  </option>
                 ))}
-              </div>
+              </select>
             </div>
           )}
 
-          {/* Quantity selector */}
-          <div className="detail-quantity-wrapper">
-            <span className="detail-option-label">Quantity:</span>
+          {/* Quantity + Action Buttons */}
+          <div className="detail-order-row">
             <div className="quantity-controls">
-              <button
-                type="button"
-                className="qty-btn"
-                onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                aria-label="Decrease quantity"
-              >
-                −
-              </button>
+              <button type="button" className="qty-btn" onClick={() => setQuantity((q) => Math.max(1, q - 1))} aria-label="Decrease quantity">-</button>
               <span className="qty-val">{quantity}</span>
-              <button
-                type="button"
-                className="qty-btn"
-                onClick={() => setQuantity((q) => q + 1)}
-                aria-label="Increase quantity"
-              >
-                +
-              </button>
+              <button type="button" className="qty-btn" onClick={() => setQuantity((q) => q + 1)} aria-label="Increase quantity">+</button>
             </div>
+            <button className="detail-add-cart-btn" onClick={handleAddToCart} aria-label="Add to cart">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+              </svg>
+              Add to Cart
+            </button>
+            <button className="detail-buy-now-btn" onClick={handleBuyNow} aria-label="Buy now">
+              ⚡ Buy Now
+            </button>
           </div>
 
-          {/* Action Buttons */}
-          <div className="detail-actions">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="button detail-whatsapp-btn"
-              aria-label="Order via WhatsApp"
-            >
-              💬 Order via WhatsApp
-            </a>
-            <Link
-              className="button button-outline detail-enquire-btn"
-              href={`/contact?product=${encodeURIComponent(
-                `${product.name} (${selectedVariant ? selectedVariant.title : "Standard"})`
-              )}&qty=${quantity}`}
-            >
-              Request Product ↗
-            </Link>
-          </div>
-
-          {/* Trust Highlights Checklist */}
+          {/* Trust Box */}
           <div className="detail-trust-box">
-            <div className="detail-trust-row">
-              <span className="trust-check">✓</span>
-              <span><strong>100% Genuine Medicine</strong> — Direct from certified pharmaceutical labs</span>
-            </div>
-            <div className="detail-trust-row">
-              <span className="trust-check">✓</span>
-              <span><strong>Discreet Packaging</strong> — Plain packaging with complete privacy</span>
-            </div>
-            <div className="detail-trust-row">
-              <span className="trust-check">✓</span>
-              <span><strong>Fast Global Delivery</strong> — Tracked express courier service</span>
-            </div>
-            <div className="detail-trust-row">
-              <span className="trust-check">✓</span>
-              <span><strong>Personal Support</strong> — Licensed team available 8 AM to 9 PM</span>
-            </div>
+            <div className="detail-trust-row"><span className="trust-check">✓</span><span>100% Plain Discreet Box (Zero medical label outside)</span></div>
+            <div className="detail-trust-row"><span className="trust-check">✓</span><span>Tracked USPS Express Delivery (3–5 Business Days)</span></div>
+            <div className="detail-trust-row"><span className="trust-check">✓</span><span>Instant Order Confirmation on Email &amp; WhatsApp</span></div>
           </div>
         </div>
       </section>
 
-      {/* ── Related Products ── */}
+      {/* Description & Clinical Info Section */}
+      {product.description && (
+        <section className="page-width product-desc-section" aria-labelledby="desc-heading">
+          <h2 id="desc-heading">Description &amp; Clinical Information</h2>
+          <div className="product-desc-content">
+            <p>{product.description}</p>
+            <p style={{ marginTop: "16px", color: "#64748b" }}>
+              This medication is supplied in batch-tested, WHO-GMP certified formulation.
+              Always consult a healthcare professional before use.
+            </p>
+          </div>
+        </section>
+      )}
+
+      {/* Related Products */}
       {related.length > 0 && (
         <section className="page-width related-products-section" aria-labelledby="related-heading">
           <div className="section-header">
@@ -211,10 +214,7 @@ export default function ProductDetailView({ product }) {
               <p className="eyebrow">RELATED MEDICATIONS</p>
               <h2 id="related-heading">Similar in {product.category}</h2>
             </div>
-            <Link
-              href={`/products/category/${categorySlug(product.category)}`}
-              className="view-all"
-            >
+            <Link href={`/products/category/${categorySlug(product.category)}`} className="view-all">
               View More in {product.category} <span>→</span>
             </Link>
           </div>

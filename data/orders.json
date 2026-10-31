@@ -1,0 +1,16 @@
+[
+  {
+    "refCode": "MZW-ORD-1E70175C",
+    "kind": "checkout-order",
+    "submittedAt": "2026-10-31T09:57:49.365Z",
+    "to": "Usonlinemedshop247@gmail.com",
+    "customerName": "Arjit Sharma",
+    "email": "arjits.hestabit@gmail.com",
+    "phone": "8920856958",
+    "fullAddress": "c block omnagar badarpur new delhi, Delhi, Delhi 110044",
+    "orderItems": "• Tramadol (100 / 90) × 1 = $280.00",
+    "subtotal": "$280.00 USD",
+    "shipping": "FREE USPS Priority",
+    "total": "$280.00 USD"
+  }
+]
