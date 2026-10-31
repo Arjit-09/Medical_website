@@ -5,6 +5,7 @@ import Link from "next/link";
 import { CONTACT } from "../data/site";
 import { ProductCard } from "./product-card";
 import { getRelatedProducts, categorySlug } from "../data/products";
+import { useOrderModal } from "./order-modal-context";
 
 function WhatsAppIcon() {
   return (
@@ -32,6 +33,7 @@ function StarRating({ rating = 4.9, count = 148 }) {
 }
 
 export default function ProductDetailView({ product }) {
+  const { openOrderModal } = useOrderModal();
   const images = product.images && product.images.length > 0 ? product.images : [product.image];
   const [selectedImage, setSelectedImage] = useState(images[0]);
   const [selectedVariant, setSelectedVariant] = useState(
@@ -171,23 +173,23 @@ export default function ProductDetailView({ product }) {
               <span className="qty-val">{quantity}</span>
               <button type="button" className="qty-btn" onClick={() => setQuantity((q) => q + 1)} aria-label="Increase quantity">+</button>
             </div>
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => openOrderModal({ ...product, priceUSD: currentPriceUSD, variant: selectedVariant?.title, quantity }, "whatsapp")}
               className="detail-whatsapp-btn"
               aria-label={`Buy ${product.name} on WhatsApp`}
             >
               <WhatsAppIcon />
               <span>Buy on WhatsApp</span>
-            </a>
-            <Link
-              href={`/contact?product=${encodeURIComponent(product.name)}${selectedVariant ? ` (${encodeURIComponent(selectedVariant.title)})` : ""}&qty=${quantity}`}
+            </button>
+            <button
+              type="button"
+              onClick={() => openOrderModal({ ...product, priceUSD: currentPriceUSD, variant: selectedVariant?.title, quantity }, "email")}
               className="detail-web-order-btn"
               aria-label="Buy through online order form"
             >
               <span>Buy Online Form →</span>
-            </Link>
+            </button>
           </div>
 
           {/* Trust Box */}

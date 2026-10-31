@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { CONTACT } from "../data/site";
+import { useOrderModal } from "./order-modal-context";
 
 /* ── Brand Logo ── */
 export function Brand({ className = "" }) {
@@ -93,6 +94,7 @@ function LockIcon() {
 
 /* ── Main Shell ── */
 export default function SiteShell({ children }) {
+  const { openOrderModal } = useOrderModal();
   const path = usePathname();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -149,16 +151,15 @@ export default function SiteShell({ children }) {
             <a href={`tel:${CONTACT.telephone}`} className="header-action-link" aria-label={`Call ${CONTACT.phone}`}>
               <PhoneIcon /> <span className="header-action-label">Call Support</span>
             </a>
-            <a
-              href={CONTACT.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => openOrderModal(null, "whatsapp")}
               className="header-whatsapp-btn"
               aria-label="Order on WhatsApp"
             >
               <WhatsAppIcon size={17} />
               <span>Buy at WhatsApp</span>
-            </a>
+            </button>
             <button className="menu-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-expanded={mobileMenuOpen} aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}>
               {mobileMenuOpen ? "✕" : "☰"}
             </button>
@@ -194,9 +195,16 @@ export default function SiteShell({ children }) {
             <a href={`tel:${CONTACT.telephone}`} className="button mobile-nav-call-btn" onClick={() => setMobileMenuOpen(false)}>
               <PhoneIcon /> Call {CONTACT.phone}
             </a>
-            <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="button button-outline mobile-nav-whatsapp-btn" onClick={() => setMobileMenuOpen(false)}>
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openOrderModal(null, "whatsapp");
+              }}
+              className="button button-outline mobile-nav-whatsapp-btn"
+            >
               💬 Chat on WhatsApp
-            </a>
+            </button>
           </nav>
         )}
       </header>

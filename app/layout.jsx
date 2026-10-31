@@ -1,6 +1,8 @@
 import "./globals.css";
 import SiteShell from "../components/site-shell";
 import { CartProvider } from "../components/cart-context";
+import { OrderModalProvider } from "../components/order-modal-context";
+import { OrderModal } from "../components/order-modal";
 
 export const metadata = {
   title: {
@@ -20,7 +22,10 @@ export default function RootLayout({ children }) {
           Skip to content
         </a>
         <CartProvider>
-          <SiteShell>{children}</SiteShell>
+          <OrderModalProvider>
+            <SiteShell>{children}</SiteShell>
+            <OrderModal />
+          </OrderModalProvider>
         </CartProvider>
       </body>
     </html>
