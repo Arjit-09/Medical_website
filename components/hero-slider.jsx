@@ -10,7 +10,7 @@ const FEATURED_TREATMENTS = [
     desc: "Targeted solutions for moderate to severe pain.",
     link: "/products/category/pain-relief",
     image: "/products/tramadol-1.webp",
-    color: "#eff6ff",
+    color: "#f8fafc",
     tag: "FAST-ACTING",
   },
   {
@@ -19,7 +19,7 @@ const FEATURED_TREATMENTS = [
     desc: "Clinically proven treatments you can rely on.",
     link: "/products/category/ed-medication",
     image: "/products/cenforce-soft-chewable-100-mg-1.webp",
-    color: "#fef3c7",
+    color: "#f8fafc",
     tag: "PROVEN QUALITY",
   },
   {
@@ -28,7 +28,7 @@ const FEATURED_TREATMENTS = [
     desc: "Quality tested formulations for bacterial care.",
     link: "/products/category/antibiotics",
     image: "/products/amoxicillin-1.webp",
-    color: "#e0f2fe",
+    color: "#f8fafc",
     tag: "LAB CERTIFIED",
   },
 ];
