@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import ContactForm from "../../components/contact-form";
 import { CONTACT } from "../../data/site";
 
-export const metadata = { title: "Contact Us" };
+export const metadata = { title: "Buy a Product | Medzwall" };
 
 export default function ContactPage() {
   return (
@@ -13,7 +13,7 @@ export default function ContactPage() {
           <h1>How Can We Help You Today?</h1>
           <p>
             Have a question about availability, dosage, pricing, or shipping?
-            Call our team directly or submit your product request below.
+            Call our team directly or submit your product order below.
           </p>
 
           {/* Quick Direct Call & WhatsApp Action for Mobile / Fast Contact */}
@@ -56,7 +56,7 @@ export default function ContactPage() {
         </div>
 
         <div className="contact-form-column">
-          <Suspense fallback={<p>Loading product request form…</p>}>
+          <Suspense fallback={<p>Loading buy product form…</p>}>
             <ContactForm />
           </Suspense>
         </div>

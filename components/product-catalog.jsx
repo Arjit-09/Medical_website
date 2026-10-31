@@ -123,7 +123,7 @@ function Catalog({ initialCategory = "All products" }) {
             <h3>No products found</h3>
             <p>Try another name or send us a product request.</p>
             <Link className="button" href={`/contact?type=missing&product=${encodeURIComponent(search)}`}>
-              Request this product
+              Buy this product
             </Link>
           </div>
         )}

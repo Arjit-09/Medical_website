@@ -10,9 +10,9 @@ export function Brand({ className = "" }) {
   return (
     <Link href="/" className={`brand ${className}`} aria-label="Medzwall home">
       <svg width="36" height="36" viewBox="0 0 40 40" fill="none" aria-hidden="true" className="brand-icon-svg">
-        <rect width="40" height="40" rx="9" fill="#1a5c38" />
+        <rect width="40" height="40" rx="9" fill="#22c55e" />
         <path d="M10 27V13l10 10 10-10v14" stroke="white" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M20 8v7m-3.5-3.5h7" stroke="#7dd3a8" strokeWidth="2" strokeLinecap="round" />
+        <path d="M20 8v7m-3.5-3.5h7" stroke="#bbf7d0" strokeWidth="2" strokeLinecap="round" />
       </svg>
       <span className="brand-text">medzwall<span className="brand-dot">.</span></span>
     </Link>
@@ -317,7 +317,7 @@ export default function SiteShell({ children }) {
             <Link href="/">Home</Link>
             <Link href="/products">All Products</Link>
             <Link href="/contact">Contact Us</Link>
-            <Link href="/contact">Request Medicine</Link>
+            <Link href="/contact">Buy a Product</Link>
           </div>
           <div>
             <p className="footer-heading">Contact Pharmacy</p>

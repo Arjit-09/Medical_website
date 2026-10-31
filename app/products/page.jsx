@@ -8,7 +8,7 @@ export default function ProductsPage() {
       {/* Shop Hero Banner */}
       <div className="shop-hero-banner">
         <div className="page-width shop-hero-inner">
-          <p className="eyebrow" style={{ color: "#f59e0b" }}>— COMPLETE MEDICAL INVENTORY</p>
+          <p className="eyebrow" style={{ color: "#4ade80" }}>— COMPLETE MEDICAL INVENTORY</p>
           <h1 style={{ color: "white", fontSize: "clamp(26px, 3.8vw, 40px)" }}>
             Shop All Medicines
           </h1>

@@ -42,9 +42,9 @@ function RequestProductForm() {
       {state === "success" ? (
         <div className="success-state" role="status">
           <span className="success-check">✓</span>
-          <h2>Product Request Sent Successfully</h2>
+          <h2>Product Order Sent Successfully</h2>
           <p>
-            Your product request has been dispatched directly to our pharmacy team at{" "}
+            Your buy request has been dispatched directly to our pharmacy team at{" "}
             <strong>{CONTACT.email}</strong>.
           </p>
           <p className="reference-code">
@@ -69,14 +69,14 @@ function RequestProductForm() {
             style={{ marginTop: "16px" }}
             onClick={() => setState("idle")}
           >
-            ← Submit another product request
+            ← Submit another buy order
           </button>
         </div>
       ) : (
         <>
-          <h2>Request a Product</h2>
+          <h2>Buy a Product</h2>
           <p className="form-description">
-            Tell us the medicine or healthcare product you need. Our team will verify stock and get back to you promptly.
+            Tell us the medicine or healthcare product you want to buy. Our team will verify stock, pricing, and confirm your order promptly.
           </p>
 
           <form onSubmit={submit}>
@@ -171,7 +171,7 @@ function RequestProductForm() {
               className="button submit-button"
               disabled={state === "sending"}
             >
-              {state === "sending" ? "Sending directly…" : "Send Product Request"}{" "}
+              {state === "sending" ? "Submitting order…" : "Buy Product Now"}{" "}
               <span>→</span>
             </button>
 
