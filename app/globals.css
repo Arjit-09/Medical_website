@@ -227,40 +227,28 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .header-action-link:hover { color: var(--primary); }
 .header-action-label { display: inline; }
-.header-cart-btn {
+.header-whatsapp-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 9px 16px;
-  background: var(--primary-light);
-  color: var(--primary-dark);
-  border: 1.5px solid var(--line-primary);
+  gap: 7px;
+  padding: 8px 16px;
+  background: #25D366;
+  color: white;
+  border: 1.5px solid #25D366;
   border-radius: var(--radius-pill);
   font-size: 13.5px;
   font-weight: 700;
   cursor: pointer;
-  position: relative;
-  transition: all 0.15s;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
 }
-.header-cart-btn:hover {
-  background: var(--primary);
+.header-whatsapp-btn:hover {
+  background: #1eb956;
+  border-color: #1eb956;
   color: white;
-  border-color: var(--primary);
-}
-.cart-badge {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background: var(--accent);
-  color: white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 11px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
 }
 .menu-toggle {
   display: none;
@@ -1073,25 +1061,35 @@ img { display: block; max-width: 100%; height: auto; }
   border-radius: var(--radius-sm);
   white-space: nowrap;
 }
-.product-add-cart-btn {
+.product-whatsapp-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   width: 100%;
-  padding: 10px 16px;
-  background: var(--primary);
+  padding: 11px 16px;
+  background: #25D366;
   color: white;
-  border: none;
+  border: 1.5px solid #25D366;
   border-radius: var(--radius-sm);
   font-size: 13.5px;
   font-weight: 700;
+  text-decoration: none;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.2s ease;
   margin-top: auto;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
 }
-.product-add-cart-btn:hover { background: var(--primary-hover); }
-.product-add-cart-btn.added { background: #16a34a; }
+.product-whatsapp-btn:hover {
+  background: #1eb956;
+  border-color: #1eb956;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+}
+.product-whatsapp-btn svg {
+  flex-shrink: 0;
+}
 
 /* ─── Trust Strip ─────────────────────────────────────── */
 .trust-strip {
@@ -1394,49 +1392,55 @@ img { display: block; max-width: 100%; height: auto; }
 .qty-btn:hover { color: var(--primary); }
 .qty-val { padding: 0 16px; font-size: 15px; font-weight: 700; min-width: 44px; text-align: center; }
 
-.detail-add-cart-btn {
+.detail-whatsapp-btn {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex: 1;
-  min-width: 140px;
-  padding: 12px 20px;
-  background: white;
-  color: var(--primary-dark);
-  border: 2px solid var(--primary);
+  flex: 1.2;
+  min-width: 160px;
+  padding: 12px 22px;
+  background: #25D366;
+  color: white;
+  border: 2px solid #25D366;
   border-radius: var(--radius-sm);
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 700;
   cursor: pointer;
   justify-content: center;
-  transition: all 0.15s;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
 }
-.detail-add-cart-btn:hover {
-  background: var(--primary-pale);
-  color: var(--primary-hover);
+.detail-whatsapp-btn:hover {
+  background: #1eb956;
+  border-color: #1eb956;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
 }
 
-.detail-buy-now-btn {
+.detail-web-order-btn {
   display: flex;
   align-items: center;
   gap: 8px;
   flex: 1;
   min-width: 140px;
-  padding: 12px 20px;
-  background: var(--primary);
-  color: white;
+  padding: 12px 18px;
+  background: white;
+  color: var(--primary);
   border: 2px solid var(--primary);
   border-radius: var(--radius-sm);
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   justify-content: center;
-  transition: all 0.15s;
-  box-shadow: var(--shadow-primary);
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
-.detail-buy-now-btn:hover {
-  background: var(--primary-hover);
+.detail-web-order-btn:hover {
+  background: var(--primary-light);
   border-color: var(--primary-hover);
+  color: var(--primary-hover);
 }
 
 /* Trust Box */
@@ -2224,7 +2228,7 @@ img { display: block; max-width: 100%; height: auto; }
   .shipping-form-grid { grid-template-columns: 1fr; }
   .shipping-card { padding: 20px; }
   .detail-order-row { flex-direction: column; align-items: stretch; }
-  .detail-add-cart-btn, .detail-buy-now-btn { width: 100%; }
+  .detail-whatsapp-btn, .detail-web-order-btn { width: 100%; }
   .checkout-success-card { padding: 32px 20px; }
   .whatsapp-float { bottom: 16px; right: 16px; width: 48px; height: 48px; }
 }
